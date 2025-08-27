@@ -1,0 +1,33 @@
+{
+  "name": "doencas-coronarias-apresentacao",
+  "version": "1.0.0",
+  "description": "Apresentação interativa sobre Doenças Coronarianas (CID-10 I20-I25)",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server -p 4173 -c-1",
+    "lint": "html-validate \"**/*.html\"",
+    "fmt": "prettier -w \"**/*.{html,css,js}\"",
+    "export:pdf": "node scripts/export-pdf.js",
+    "export:pptx": "node scripts/export-pptx.js",
+    "export:all": "npm run export:pdf && npm run export:pptx",
+    "build": "npm run fmt && npm run export:all"
+  },
+  "keywords": [
+    "medicina",
+    "cardiologia",
+    "apresentacao",
+    "dcnt"
+  ],
+  "author": "Thiago Ragazzo",
+  "license": "MIT",
+  "devDependencies": {
+    "html-validate": "^8.24.1",
+    "prettier": "^3.4.2",
+    "jsdom": "^25.0.1",
+    "globby": "^14.0.2",
+    "pptxgenjs": "^3.12.0",
+    "puppeteer": "^23.10.4",
+    "http-server": "^14.1.1",
+    "svgo": "^3.3.2"
+  }
+}

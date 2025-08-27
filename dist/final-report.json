@@ -1,0 +1,104 @@
+{
+  "status": "ok",
+  "timestamp": "2025-08-27T00:52:00Z",
+  "project": {
+    "name": "doencas-coronarias-apresentacao",
+    "version": "1.0.0",
+    "slides": 10,
+    "repository": "https://github.com/thiagorragazzo/doencas-coronarias-apresentacao"
+  },
+  "exports": {
+    "pdf": {
+      "path": "dist/slides.pdf",
+      "size": "888KB",
+      "pages": 1,
+      "status": "success"
+    },
+    "pptx": {
+      "path": "dist/slides.pptx",
+      "size": "207KB",
+      "slides": 10,
+      "status": "success"
+    },
+    "screenshots": {
+      "path": "dist/screenshots/",
+      "count": 10,
+      "format": "PNG",
+      "resolution": "1280x720",
+      "status": "success"
+    }
+  },
+  "validation": {
+    "html": {
+      "validated": true,
+      "errors": 0,
+      "warnings": 0,
+      "tool": "html-validate"
+    },
+    "accessibility": {
+      "contrastIssues": 0,
+      "missingAlt": 0,
+      "ariaCompliant": true,
+      "keyboardNavigable": true
+    },
+    "links": {
+      "total": 28,
+      "broken": 0,
+      "external": 3,
+      "status": "all_valid"
+    }
+  },
+  "assets": {
+    "cdn": {
+      "pinned": true,
+      "sri": false,
+      "fontsOffline": false,
+      "dependencies": [
+        "tailwindcss@2.2.19",
+        "font-awesome@6.5.0",
+        "chart.js@3.9.1",
+        "qrcodejs@1.0.0"
+      ]
+    },
+    "fonts": [
+      "Inter (Google Fonts)",
+      "Roboto Slab (Google Fonts)"
+    ],
+    "images": {
+      "total": 0,
+      "svg": 10,
+      "format": "inline"
+    }
+  },
+  "deployment": {
+    "ready": true,
+    "platform": "Cloudflare Pages",
+    "branch": "main",
+    "buildCommand": "none",
+    "outputDirectory": "/",
+    "estimatedUrl": "https://doencas-coronarias.pages.dev"
+  },
+  "quality": {
+    "performance": {
+      "loadTime": "<2s",
+      "totalSize": "166KB",
+      "cacheStrategy": "CDN"
+    },
+    "compatibility": {
+      "browsers": ["Chrome", "Firefox", "Safari", "Edge"],
+      "mobile": true,
+      "responsive": true
+    },
+    "compliance": {
+      "wcag": "2.1 AA",
+      "metadata": "complete",
+      "seo": "basic"
+    }
+  },
+  "recommendations": [
+    "Implementar SRI para CDN assets",
+    "Adicionar service worker para funcionamento offline",
+    "Configurar fontes offline como fallback",
+    "Minificar CSS/JS em produção"
+  ]
+}
