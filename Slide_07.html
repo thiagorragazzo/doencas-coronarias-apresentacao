@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I24 - Outras Isquemias Agudas do Coração</title>
+
+    <!-- Metadados para conversão PowerPoint -->
+    <meta name="slide-number" content="7">
+    <meta name="slide-layout" content="other-acute-ischemia">
+    <meta name="pptx-transition" content="slide">
+    <meta name="harrison-validated" content="true">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+
+    <style>
+        .slide-container {
+            width: 1280px; height: 720px;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            margin: 0 auto; display: flex; flex-direction: column;
+            padding: 40px 60px; position: relative; overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .slide-container::before{
+            content:''; position:absolute; inset:0;
+            background-image:
+              radial-gradient(circle at 15% 40%, rgba(16,185,129,.06) 0%, transparent 35%),
+              radial-gradient(circle at 85% 20%, rgba(139,92,246,.05) 0%, transparent 35%),
+              radial-gradient(circle at 50% 80%, rgba(59,130,246,.07) 0%, transparent 40%);
+            animation:spectrum-shift 20s ease-in-out infinite;
+        }
+        @keyframes spectrum-shift{0%,100%{opacity:.45;transform:rotate(0)}50%{opacity:.65;transform:rotate(1deg)}}
+
+        .ecg-variations{position:absolute; top:60%; left:0; width:100%; height:100px; opacity:.08; overflow:hidden}
+        .ecg-wave{position:absolute; width:100%; height:2px;
+            background:linear-gradient(90deg,transparent 0%,#10B981 20%,transparent 30%,#8B5CF6 50%,transparent 60%,#3B82F6 80%,transparent 100%);
+            animation:ecg-flow 6s linear infinite}
+        @keyframes ecg-flow{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+        .header-section{position:relative; z-index:10; margin-bottom:18px}
+        .title{font-family:'Roboto Slab',serif; font-size:34px; font-weight:700; color:#fff; margin-bottom:4px;
+               text-shadow:0 4px 20px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; gap:15px}
+        .title .code{color:#10B981; background:rgba(16,185,129,.12); padding:4px 12px; border-radius:6px; border:1px solid rgba(16,185,129,.35)}
+        .subtitle{text-align:center; font-size:13px; color:#94A3B8; letter-spacing:.5px}
+
+        .diversity-badge{position:absolute; top:40px; right:60px;
+            background:linear-gradient(135deg, rgba(16,185,129,.2), rgba(139,92,246,.15));
+            backdrop-filter:blur(10px); border:1px solid rgba(16,185,129,.35);
+            padding:8px 20px; border-radius:20px; display:flex; align-items:center; gap:8px;
+            animation:color-pulse 3s ease-in-out infinite}
+        @keyframes color-pulse{0%,100%{border-color:rgba(16,185,129,.35)}33%{border-color:rgba(139,92,246,.45)}66%{border-color:rgba(59,130,246,.45)}}
+        .diversity-badge i{color:#34D399; font-size:14px}
+        .diversity-badge span{font-size:12px; color:#86EFAC; font-weight:600; text-transform:uppercase}
+
+        .content-wrapper{position:relative; z-index:10; display:grid; grid-template-columns:repeat(2,1fr); gap:25px; flex:1}
+
+        .condition-card{
+            background:rgba(255,255,255,.05); backdrop-filter:blur(20px);
+            border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:16px;
+            transition:all .3s cubic-bezier(.4,0,.2,1); position:relative; overflow:hidden;
+            opacity:0; transform:scale(.98); animation:fadeIn .6s ease forwards; animation-delay:calc(var(--index)*.12s)
+        }
+        @keyframes fadeIn{to{opacity:1; transform:scale(1)}}
+        .condition-card:hover{background:rgba(255,255,255,.08); transform:translateY(-3px) scale(1.02); box-shadow:0 12px 30px rgba(0,0,0,.3)}
+        .card-angina{border-left:3px solid #3B82F6}
+        .card-takotsubo{border-left:3px solid #8B5CF6}
+        .card-espasmo{border-left:3px solid #10B981}
+        .card-minoca{border-left:3px solid #F59E0B}
+
+        .card-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.08)}
+        .card-title-wrapper{display:flex; align-items:center; gap:10px}
+        .card-icon{width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px}
+        .icon-angina{background:rgba(59,130,246,.15); color:#60A5FA}
+        .icon-takotsubo{background:rgba(139,92,246,.15); color:#A78BFA}
+        .icon-espasmo{background:rgba(16,185,129,.15); color:#34D399}
+        .icon-minoca{background:rgba(245,158,11,.15); color:#FBBF24}
+        .card-title{font-size:14px; font-weight:600; color:#fff}
+        .incidence-badge{padding:3px 8px; border-radius:12px; font-size:10px; font-weight:700; background:rgba(255,255,255,.14); color:#E2E8F0}
+
+        .ecg-pattern{background:rgba(0,0,0,.2); border-radius:8px; padding:8px; margin-bottom:10px; height:50px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden}
+        .ecg-line-pattern{width:100%; height:1px; background:rgba(255,255,255,.22); position:relative}
+        .pattern-angina::after{content:''; position:absolute; top:-10px; left:30%; width:40%; height:20px; border-bottom:2px solid #60A5FA; border-radius:0 0 50% 50%}
+        .pattern-takotsubo::after{content:''; position:absolute; top:-15px; left:20%; width:60%; height:30px; border:2px solid #A78BFA; border-radius:50% 50% 0 0}
+        .pattern-espasmo::after{content:''; position:absolute; top:-20px; left:25%; width:50%; height:40px; border-left:2px solid #34D399; border-top:2px solid #34D399; transform:rotate(45deg)}
+        .pattern-minoca::after{content:'?'; position:absolute; top:-15px; left:48%; font-size:22px; color:#FBBF24; font-weight:800}
+
+        .card-content{font-size:11px; color:#CBD5E1; line-height:1.5; margin-bottom:10px}
+        .highlight{color:#F87171; font-weight:600}
+
+        .features-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:6px; margin-bottom:10px}
+        .feature-item{display:flex; align-items:center; gap:4px; padding:4px 6px; background:rgba(255,255,255,.03); border-radius:6px; font-size:10px; color:#94A3B8}
+        .feature-item i{font-size:9px}
+
+        .diagnosis-treatment{display:grid; grid-template-columns:1fr 1fr; gap:8px; padding-top:10px; border-top:1px solid rgba(255,255,255,.06)}
+        .dt-item{padding:6px; background:rgba(255,255,255,.02); border-radius:6px}
+        .dt-label{font-size:9px; color:#64748B; text-transform:uppercase; letter-spacing:.5px; margin-bottom:2px}
+        .dt-value{font-size:10px; color:#E2E8F0; font-weight:600}
+
+        .score-box{position:absolute; top:16px; right:16px; width:50px; height:50px; border-radius:50%;
+            display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:700; opacity:.12; font-size:18px; color:rgba(255,255,255,.35)}
+        .score-label{font-size:8px; font-weight:500; text-transform:uppercase}
+
+        .bottom-section{position:absolute; bottom:60px; left:60px; right:60px; display:grid; grid-template-columns:1.5fr 1fr; gap:20px}
+
+        .diff-table{background:rgba(255,255,255,.03); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:12px}
+        .diff-title{font-size:12px; font-weight:700; color:#E2E8F0; margin-bottom:8px; display:flex; align-items:center; gap:6px}
+        .diff-title i{color:#10B981}
+        .diff-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:4px; font-size:9px}
+        .diff-header{background:rgba(16,185,129,.12); padding:4px; border-radius:4px; color:#86EFAC; font-weight:700; text-align:center}
+        .diff-cell{background:rgba(255,255,255,.02); padding:4px; border-radius:4px; color:#CBD5E1; text-align:center}
+
+        .scores-box{background:linear-gradient(135deg, rgba(234,179,8,.08), rgba(245,158,11,.05));
+            border:1px solid rgba(234,179,8,.22); border-radius:10px; padding:12px}
+        .scores-title{font-size:12px; font-weight:700; color:#FCD34D; margin-bottom:8px; display:flex; align-items:center; gap:6px}
+        .scores-title i{color:#EAB308}
+        .score-items{display:flex; justify-content:space-around}
+        .score-item{text-align:center}
+        .score-name{font-size:10px; color:#FDE68A; margin-bottom:2px}
+        .score-value{font-size:16px; font-weight:800; color:#FCD34D}
+
+        .harrison-ref{position:absolute; bottom:30px; right:240px; background:rgba(59,130,246,.1);
+            backdrop-filter:blur(10px); border:1px solid rgba(59,130,246,.3); padding:6px 14px; border-radius:6px;
+            display:flex; align-items:center; gap:6px; font-size:10px; color:#93C5FD}
+        .dcnt-reference{position:absolute; bottom:30px; right:60px; background:rgba(34,197,94,.1);
+            backdrop-filter:blur(10px); border:1px solid rgba(34,197,94,.3); padding:8px 16px; border-radius:8px; display:flex; align-items:center; gap:8px}
+        .dcnt-reference span{font-size:11px; color:#A7F3D0; font-weight:600}
+
+        .slide-number{position:absolute; bottom:30px; left:60px; background:rgba(255,255,255,.05);
+            backdrop-filter:blur(10px); padding:6px 12px; border-radius:6px; font-size:12px; color:#64748B; font-weight:600}
+        .nav-indicator{position:absolute; bottom:30px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
+        .nav-dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.2); transition:all .3s ease}
+        .nav-dot.active{background:#10B981; width:24px; border-radius:4px}
+    </style>
+</head>
+<body>
+<div class="slide-container" data-slide="7" data-section="other-acute-ischemia">
+    <div class="ecg-variations"><div class="ecg-wave" aria-hidden="true"></div></div>
+
+    <div class="header-section">
+        <h1 class="title"><span class="code">I24</span> Outras Isquemias Agudas do Coração</h1>
+        <p class="subtitle">NSTE-ACS (AI/NSTEMI) • Takotsubo • Espasmo Coronário • MINOCA</p>
+    </div>
+
+    <div class="diversity-badge"><i class="fas fa-shapes"></i><span>Espectro Diverso</span></div>
+
+    <div class="content-wrapper">
+        <!-- NSTE-ACS -->
+        <div class="condition-card card-angina" style="--index:0">
+            <div class="card-header">
+                <div class="card-title-wrapper">
+                    <div class="card-icon icon-angina"><i class="fas fa-bolt"></i></div>
+                    <div class="card-title">NSTE-ACS (AI / NSTEMI)</div>
+                </div>
+                <span class="incidence-badge">≈60–70% ACS</span>
+            </div>
+            <div class="ecg-pattern" aria-label="ECG típico NSTE-ACS (infra de ST/inversão de T)">
+                <div class="ecg-line-pattern pattern-angina"></div>
+            </div>
+            <div class="card-content">
+                <strong>Definição:</strong> SCA sem supra-ST. <span class="highlight">AI</span> = troponina (–);
+                <span class="highlight">NSTEMI</span> = troponina (+).
+            </div>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-clock" style="color:#60A5FA"></i><span>Repouso/mínimo esforço</span></div>
+                <div class="feature-item"><i class="fas fa-chart-line" style="color:#60A5FA"></i><span>Infra ST / T invertida</span></div>
+                <div class="feature-item"><i class="fas fa-procedures" style="color:#60A5FA"></i><span>Cine 24–72h (alto risco &lt;24h)</span></div>
+                <div class="feature-item"><i class="fas fa-skull-crossbones" style="color:#60A5FA"></i><span>Mortalidade 2–5%</span></div>
+            </div>
+            <div class="diagnosis-treatment">
+                <div class="dt-item"><div class="dt-label">Escores</div><div class="dt-value">TIMI / GRACE (alto ≥140)</div></div>
+                <div class="dt-item"><div class="dt-label">Tratamento</div><div class="dt-value">AAS + P2Y12 + Heparina</div></div>
+            </div>
+            <div class="score-box">TIMI<div class="score-label">Score</div></div>
+        </div>
+
+        <!-- Takotsubo -->
+        <div class="condition-card card-takotsubo" style="--index:1">
+            <div class="card-header">
+                <div class="card-title-wrapper">
+                    <div class="card-icon icon-takotsubo"><i class="fas fa-heart-broken"></i></div>
+                    <div class="card-title">Síndrome de Takotsubo</div>
+                </div>
+                <span class="incidence-badge">~1–2% ACS</span>
+            </div>
+            <div class="ecg-pattern" aria-label="Padrão ECG variável; QT prolongado frequente">
+                <div class="ecg-line-pattern pattern-takotsubo"></div>
+            </div>
+            <div class="card-content">
+                <strong>Miocardiopatia de estresse:</strong> apical ballooning; <span class="highlight">~90% mulheres</span> pós-menopausa; gatilho emocional/físico.
+            </div>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-female" style="color:#A78BFA"></i><span>♀ &gt;60 anos</span></div>
+                <div class="feature-item"><i class="fas fa-brain" style="color:#A78BFA"></i><span>Estresse agudo</span></div>
+                <div class="feature-item"><i class="fas fa-wave-square" style="color:#A78BFA"></i><span>QT prolongado</span></div>
+                <div class="feature-item"><i class="fas fa-stethoscope" style="color:#A78BFA"></i><span>Coronárias sem obstrução</span></div>
+            </div>
+            <div class="diagnosis-treatment">
+                <div class="dt-item"><div class="dt-label">Critérios Mayo</div><div class="dt-value">4/4 (disfunção transitória + sem DAC obstrutiva + troponina modesta + excluir miocardite/feocro)</div></div>
+                <div class="dt-item"><div class="dt-label">Evolução</div><div class="dt-value">Recupera em 2–4 semanas</div></div>
+            </div>
+            <div class="score-box">MAYO<div class="score-label">Criteria</div></div>
+        </div>
+
+        <!-- Espasmo Coronário -->
+        <div class="condition-card card-espasmo" style="--index:2">
+            <div class="card-header">
+                <div class="card-title-wrapper">
+                    <div class="card-icon icon-espasmo"><i class="fas fa-compress-alt"></i></div>
+                    <div class="card-title">Espasmo Coronário (Prinzmetal)</div>
+                </div>
+                <span class="incidence-badge">~2–5%</span>
+            </div>
+            <div class="ecg-pattern" aria-label="Supra de ST transitório">
+                <div class="ecg-line-pattern pattern-espasmo"></div>
+            </div>
+            <div class="card-content">
+                <strong>Angina vasoespástica:</strong> supra ST <5 min, <span class="highlight">madrugada</span> típica; tabagismo e cocaína = gatilhos.
+            </div>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-moon" style="color:#34D399"></i><span>2–5h da manhã</span></div>
+                <div class="feature-item"><i class="fas fa-smoking" style="color:#34D399"></i><span>Tabagismo</span></div>
+                <div class="feature-item"><i class="fas fa-syringe" style="color:#34D399"></i><span>Teste ACh/ergonovina</span></div>
+                <div class="feature-item"><i class="fas fa-ban" style="color:#34D399"></i><span>Evitar BB não-seletivos</span></div>
+            </div>
+            <div class="diagnosis-treatment">
+                <div class="dt-item"><div class="dt-label">Diagnóstico</div><div class="dt-value">Provocação (+) em angio</div></div>
+                <div class="dt-item"><div class="dt-label">Tratamento</div><div class="dt-value">BCC + Nitratos</div></div>
+            </div>
+            <div class="score-box">JCS<div class="score-label">Grade</div></div>
+        </div>
+
+        <!-- MINOCA -->
+        <div class="condition-card card-minoca" style="--index:3">
+            <div class="card-header">
+                <div class="card-title-wrapper">
+                    <div class="card-icon icon-minoca"><i class="fas fa-question"></i></div>
+                    <div class="card-title">MINOCA</div>
+                </div>
+                <span class="incidence-badge">~5–10% IAM</span>
+            </div>
+            <div class="ecg-pattern" aria-label="Padrão ECG variável conforme etiologia">
+                <div class="ecg-line-pattern pattern-minoca"></div>
+            </div>
+            <div class="card-content">
+                <strong>IAM com coronárias não obstrutivas</strong> (&lt;50%): múltiplas causas (ruptura/erosão de placa, espasmo, <span class="highlight">SCAD</span>, embolia, microvascular). Requer investigação dirigida.
+            </div>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-magnet" style="color:#FBBF24"></i><span>CMR (RMN) p/ etiologia</span></div>
+                <div class="feature-item"><i class="fas fa-project-diagram" style="color:#FBBF24"></i><span>OCT/IVUS úteis</span></div>
+                <div class="feature-item"><i class="fas fa-venus-mars" style="color:#FBBF24"></i><span>Mulheres &gt; homens</span></div>
+                <div class="feature-item"><i class="fas fa-exclamation-circle" style="color:#FBBF24"></i><span>Excluir miocardite/TTS</span></div>
+            </div>
+            <div class="diagnosis-treatment">
+                <div class="dt-item"><div class="dt-label">Abordagem</div><div class="dt-value">Pesquisa conforme causa</div></div>
+                <div class="dt-item"><div class="dt-label">Terapia</div><div class="dt-value">Individualizar (antianginosos/antiagreg.)</div></div>
+            </div>
+            <div class="score-box">ESC<div class="score-label">2023</div></div>
+        </div>
+    </div>
+
+    <!-- Seção inferior -->
+    <div class="bottom-section">
+        <!-- Tabela comparativa -->
+        <div class="diff-table">
+            <div class="diff-title"><i class="fas fa-microscope"></i>Diagnóstico Diferencial Rápido</div>
+            <div class="diff-grid">
+                <div class="diff-header">Critério</div>
+                <div class="diff-header">NSTE-ACS</div>
+                <div class="diff-header">Takotsubo</div>
+                <div class="diff-header">Espasmo</div>
+                <div class="diff-header">MINOCA</div>
+
+                <div class="diff-cell">Troponina</div>
+                <div class="diff-cell">± / +</div>
+                <div class="diff-cell">+ (modesta)</div>
+                <div class="diff-cell">±</div>
+                <div class="diff-cell">+</div>
+
+                <div class="diff-cell">Coronárias</div>
+                <div class="diff-cell">Placa/trombo parcial</div>
+                <div class="diff-cell">Sem obstrução</div>
+                <div class="diff-cell">Normais, espasmo</div>
+                <div class="diff-cell">&lt;50% estenose</div>
+
+                <div class="diff-cell">ECG</div>
+                <div class="diff-cell">Infra ST / T (–)</div>
+                <div class="diff-cell">Variável, QT longo</div>
+                <div class="diff-cell">Supra transitório</div>
+                <div class="diff-cell">Variável</div>
+
+                <div class="diff-cell">Imagem-chave</div>
+                <div class="diff-cell">Angio + risco</div>
+                <div class="diff-cell">Eco/CMR</div>
+                <div class="diff-cell">Teste ACh</div>
+                <div class="diff-cell">CMR + OCT/IVUS</div>
+
+                <div class="diff-cell">Manejo</div>
+                <div class="diff-cell">DAAP+heparina; invasiva</div>
+                <div class="diff-cell">Suporte; recuperação</div>
+                <div class="diff-cell">BCC+nitratos</div>
+                <div class="diff-cell">Causa-dirigido</div>
+            </div>
+        </div>
+
+        <!-- Escores -->
+        <div class="scores-box">
+            <div class="scores-title"><i class="fas fa-calculator"></i>Escores de Risco</div>
+            <div class="score-items">
+                <div class="score-item">
+                    <div class="score-name">TIMI</div>
+                    <div class="score-value">0–7</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-name">GRACE</div>
+                    <div class="score-value">Alto ≥140</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-name">HEART</div>
+                    <div class="score-value">0–10</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Referências -->
+    <div class="harrison-ref"><i class="fas fa-book-medical"></i><span>Harrison 21ed • Cap. 270</span></div>
+    <div class="dcnt-reference"><i class="fas fa-check-circle"></i><span>Plano DCNT 2021–2030</span></div>
+
+    <!-- Navegação -->
+    <div class="slide-number">07 / 10</div>
+    <div class="nav-indicator">
+        <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+        <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+        <div class="nav-dot active"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Efeitos sutis nos badges
+  const badges = document.querySelectorAll('.incidence-badge');
+  let i = 0;
+  setInterval(()=>{ badges.forEach(b=>b.style.transform='scale(1)'); badges[i].style.transform='scale(1.12)'; i=(i+1)%badges.length; },1600);
+  // Pulsar scores
+  document.querySelectorAll('.score-box').forEach((box,idx)=>{
+    setInterval(()=>{ box.style.opacity='.2'; setTimeout(()=>box.style.opacity='.12',400); }, 2600+(idx*700));
+  });
+});
+
+// Metadados para conversão
+window.slideMetadata = {
+  slideNumber: 7,
+  title: "I24 - Outras Isquemias Agudas do Coração",
+  layout: "LAYOUT_COMPARATIVE_CONDITIONS",
+  transition: { type: "slide", duration: 1 },
+  notes: `
+    Validação Harrison 21ed (Cap. 270):
+    - NSTE-ACS: maior parte dos ACS (≈60–70%); AI = troponina (–), NSTEMI = troponina (+);
+      ECG: infra de ST/inversão de T; manejo: AAS+P2Y12+heparina; estratégia invasiva guiada por risco (GRACE ≥140).
+    - Takotsubo: 1–2% dos ACS; ~90% mulheres pós-menopausa; disfunção VE transitória; coronárias sem DAC obstrutiva; QT longo; recuperação 2–4 semanas.
+    - Espasmo (Prinzmetal): supra ST transitório, predominância noturna; diagnóstico por provocação (ACh/ergonovina); tratar com BCC+nitratos; evitar BB não-seletivos.
+    - MINOCA: 5–10% dos IAM; <50% estenose; causas: ruptura/erosão de placa, espasmo, SCAD, embolia, microvascular; investigar com CMR e OCT/IVUS; terapia conforme etiologia.
+    Plano DCNT: reforçar prevenção e reabilitação (impacto populacional na redução de mortalidade).
+  `,
+  references: [
+    "Harrison's Principles of Internal Medicine, 21st Ed, Ch. 270",
+    "ESC NSTE-ACS 2023",
+    "JCS Vasospastic Angina 2023",
+    "ESC Position Paper MINOCA 2023",
+    "Plano DCNT Brasil 2021–2030"
+  ],
+  exportConfig: {
+    powerpoint: { masterSlide: "COMPARATIVE_GRID" },
+    googleSlides: { layout: "TITLE_AND_FOUR_CONTENT" }
+  }
+};
+</script>
+</body>
+</html>

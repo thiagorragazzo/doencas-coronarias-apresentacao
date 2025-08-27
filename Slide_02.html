@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Roteiro da Apresentação — Agenda</title>
+
+  <!-- Metadados para pipeline de conversão -->
+  <meta name="slide-number" content="2">
+  <meta name="slide-layout" content="agenda">
+  <meta name="pptx-transition" content="slide">
+  <meta name="harrison-validated" content="true">
+
+  <style>
+    :root{
+      --bg1:#0F172A; --bg2:#1E293B; --ink:#E2E8F0; --muted:#94A3B8;
+      --accent:#EF4444; --amber:#F59E0B; --blue:#3B82F6; --violet:#8B5CF6; --teal:#14B8A6; --green:#10B981;
+      --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+    .slide{width:1280px;height:720px;margin:0 auto;position:relative;overflow:hidden;padding:44px 64px}
+    .bg{position:absolute;inset:-20%;background:
+      radial-gradient(620px 300px at 12% 18%, rgba(59,130,246,.10), transparent 60%),
+      radial-gradient(500px 260px at 86% 84%, rgba(239,68,68,.08), transparent 60%);
+      pointer-events:none}
+    header{text-align:center;margin-bottom:22px;position:relative;z-index:2}
+    h1{margin:0;font-size:42px;font-weight:800;letter-spacing:.2px;text-shadow:0 8px 30px rgba(0,0,0,.35)}
+    .sub{margin-top:6px;font-size:14px;color:var(--muted)}
+    .time-badge{position:absolute;top:46px;right:64px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);
+      color:#bbf7d0;font-size:12px;border-radius:999px;padding:8px 14px}
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch;margin-top:6px;position:relative;z-index:2}
+    .panel{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:18px}
+    .panel h3{margin:0 0 10px 0;font-size:16px;font-weight:700;letter-spacing:.3px}
+
+    /* Timeline esquerda */
+    .timeline{position:relative;padding-left:24px}
+    .vline{position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg, rgba(239,68,68,.6), rgba(59,130,246,.6))}
+    .item{display:flex;gap:14px;align-items:flex-start;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);margin-bottom:10px;transition:transform .2s ease, background .2s ease}
+    .item:hover{transform:translateX(3px);background:rgba(255,255,255,.06)}
+    .dot{width:14px;height:14px;border-radius:50%}
+    .cid{display:inline-flex;align-items:center;gap:8px}
+    .cid .tag{font-size:11px;color:#fff;padding:2px 8px;border-radius:6px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08)}
+    .title{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px}
+    .desc{font-size:12px;color:var(--muted)}
+    .spacer{flex:1}
+    .min{font-size:12px;color:#cbd5e1;font-weight:700}
+
+    /* Cores dos tópicos */
+    .red{background:var(--accent)}
+    .orange{background:#F97316}
+    .amber{background:var(--amber)}
+    .teal{background:var(--teal)}
+    .blue{background:var(--blue)}
+    .violet{background:var(--violet)}
+
+    /* Donut à direita (SVG) */
+    .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .lg{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .sq{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+    .note{font-size:12px;color:var(--muted);margin-top:8px}
+
+    /* Rodapés */
+    .refs{position:absolute;left:64px;right:64px;bottom:26px;display:flex;justify-content:space-between;align-items:center}
+    .refs .left{font-size:11px;color:var(--muted)}
+    .refs .right{font-size:11px;color:#a7f3d0;border:1px solid rgba(34,197,94,.35);padding:6px 10px;border-radius:8px;background:rgba(34,197,94,.08)}
+
+    /* Navegação */
+    .nav{position:absolute;left:50%;transform:translateX(-50%);bottom:26px;display:flex;gap:6px}
+    .dotnav{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
+    .dotnav.active{background:var(--accent);width:24px;border-radius:4px}
+    .slideNo{position:absolute;bottom:26px;left:64px;font-size:12px;color:#64748B;background:rgba(255,255,255,.05);padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.08)}
+  </style>
+</head>
+<body>
+  <div class="slide" role="group" aria-label="Slide 2 — Agenda">
+    <div class="bg"></div>
+
+    <header>
+      <h1>Roteiro da Apresentação</h1>
+      <div class="sub">Projeto de Extensão V • Turma 5º Semestre B • 27/08/2025</div>
+      <div class="time-badge">Duração total: 10 min</div>
+    </header>
+
+    <section class="grid">
+      <!-- Timeline (esquerda) -->
+      <div class="panel">
+        <h3>Sequência dos tópicos (com tempo por CID)</h3>
+        <div class="timeline" aria-label="Linha do tempo dos tópicos">
+          <div class="vline"></div>
+
+          <div class="item">
+            <div class="dot red" title="I21"></div>
+            <div>
+              <div class="cid"><span class="tag">I21</span></div>
+              <div class="title">Infarto Agudo do Miocárdio</div>
+              <div class="desc">Epidemiologia, diagnóstico e tratamento tempo‑dependente</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="min">2:30</div>
+          </div>
+
+          <div class="item">
+            <div class="dot orange" title="I22"></div>
+            <div>
+              <div class="cid"><span class="tag">I22</span></div>
+              <div class="title">IAM Recorrente</div>
+              <div class="desc">Reinfarto até 28 dias (CID-10) • Fatores de risco e manejo</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="min">1:30</div>
+          </div>
+
+          <div class="item">
+            <div class="dot amber" title="I23"></div>
+            <div>
+              <div class="cid"><span class="tag">I23</span></div>
+              <div class="title">Complicações pós‑IAM</div>
+              <div class="desc">Arrítmicas e mecânicas • Reconhecimento precoce</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="min">1:30</div>
+          </div>
+
+          <div class="item">
+            <div class="dot teal" title="I24"></div>
+            <div>
+              <div class="cid"><span class="tag">I24</span></div>
+              <div class="title">Outras Isquemias Agudas</div>
+              <div class="desc">AI/NSTEMI • Espasmo • Takotsubo • Estratificação</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="min">1:30</div>
+          </div>
+
+          <div class="item">
+            <div class="dot blue" title="I25"></div>
+            <div>
+              <div class="cid"><span class="tag">I25</span></div>
+              <div class="title">Doença Isquêmica Crônica</div>
+              <div class="desc">Angina estável • Manejo ambulatorial • Revascularização</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="min">2:00</div>
+          </div>
+
+          <div class="item">
+            <div class="dot violet" title="Prevenção"></div>
+            <div>
+              <div class="cid"><span class="tag">Prevenção</span></div>
+              <div class="title">Fecho & Metas DCNT</div>
+              <div class="desc">Estilo de vida, reabilitação e indicadores 2030</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="min">1:00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visualização (direita) -->
+      <div class="panel" aria-labelledby="alocacao">
+        <h3 id="alocacao">Distribuição do tempo (10 min)</h3>
+
+        <!-- Donut SVG com segmentos (sem libs externas) -->
+        <figure role="img" aria-label="Gráfico de rosca com a distribuição de minutos por tópico">
+          <svg viewBox="0 0 280 280" width="100%" height="260" aria-hidden="false">
+            <!-- trilho -->
+            <g transform="translate(140,140) rotate(-90)">
+              <circle r="100" cx="0" cy="0" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="22"/>
+              <!-- Circunferência ≈ 628.3. Segs: 2.5,1.5,1.5,1.5,2,1 -->
+              <!-- I21 -->
+              <circle r="100" cx="0" cy="0" fill="none" stroke="#EF4444" stroke-width="22" stroke-linecap="butt"
+                      stroke-dasharray="157.1 471.2" stroke-dashoffset="0"/>
+              <!-- I22 (offset 157.1) -->
+              <circle r="100" cx="0" cy="0" fill="none" stroke="#F97316" stroke-width="22" stroke-linecap="butt"
+                      stroke-dasharray="94.2 534.1" stroke-dashoffset="-157.1"/>
+              <!-- I23 (offset 251.3) -->
+              <circle r="100" cx="0" cy="0" fill="none" stroke="#F59E0B" stroke-width="22" stroke-linecap="butt"
+                      stroke-dasharray="94.2 534.1" stroke-dashoffset="-251.3"/>
+              <!-- I24 (offset 345.5) -->
+              <circle r="100" cx="0" cy="0" fill="none" stroke="#14B8A6" stroke-width="22" stroke-linecap="butt"
+                      stroke-dasharray="94.2 534.1" stroke-dashoffset="-345.5"/>
+              <!-- I25 (offset 439.7) -->
+              <circle r="100" cx="0" cy="0" fill="none" stroke="#3B82F6" stroke-width="22" stroke-linecap="butt"
+                      stroke-dasharray="125.7 502.6" stroke-dashoffset="-439.7"/>
+              <!-- Prevenção (offset 565.4) -->
+              <circle r="100" cx="0" cy="0" fill="none" stroke="#8B5CF6" stroke-width="22" stroke-linecap="butt"
+                      stroke-dasharray="62.8 565.5" stroke-dashoffset="-565.4"/>
+            </g>
+            <!-- centro -->
+            <circle cx="140" cy="140" r="70" fill="rgba(15,23,42,.9)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <text x="140" y="134" text-anchor="middle" font-size="18" fill="#E2E8F0" font-weight="700">10:00</text>
+            <text x="140" y="154" text-anchor="middle" font-size="11" fill="#94A3B8">minutos totais</text>
+          </svg>
+        </figure>
+
+        <!-- Legenda -->
+        <div class="legend" aria-label="Legenda do gráfico">
+          <div class="lg"><span class="sq" style="background:#EF4444"></span><span>I21 • IAM Agudo (2:30)</span></div>
+          <div class="lg"><span class="sq" style="background:#F97316"></span><span>I22 • Recorrente (1:30)</span></div>
+          <div class="lg"><span class="sq" style="background:#F59E0B"></span><span>I23 • Complicações (1:30)</span></div>
+          <div class="lg"><span class="sq" style="background:#14B8A6"></span><span>I24 • Outras Isquemias (1:30)</span></div>
+          <div class="lg"><span class="sq" style="background:#3B82F6"></span><span>I25 • Crônica (2:00)</span></div>
+          <div class="lg"><span class="sq" style="background:#8B5CF6"></span><span>Prevenção & DCNT (1:00)</span></div>
+        </div>
+
+        <div class="note">Tempos sugeridos para **flash talk**. Ajustáveis conforme apresentação.</div>
+      </div>
+    </section>
+
+    <!-- Rodapé: referências e integração -->
+    <div class="refs">
+      <div class="left">Base técnica: Harrison 21ª ed. (Cap. 269–273) • Estrutura de tópicos alinhada ao conteúdo subsequente.</div>
+      <div class="right">Integrado ao Plano DCNT 2021–2030</div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="slideNo">02 / 10</div>
+    <div class="nav" aria-hidden="true">
+      <div class="dotnav"></div>
+      <div class="dotnav active"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+    </div>
+  </div>
+
+  <script>
+    // Metadados para exportação (Manus)
+    window.slideMetadata = {
+      slideNumber: 2,
+      title: "Roteiro da Apresentação",
+      layout: "LAYOUT_AGENDA",
+      transition: { type: "slide", duration: 0.8 },
+      course: "Projeto de Extensão V",
+      classGroup: "5º Semestre B",
+      dateISO: "2025-08-27",
+      agenda: [
+        { cid:"I21", title:"IAM Agudo", minutes:2.5 },
+        { cid:"I22", title:"IAM Recorrente", minutes:1.5 },
+        { cid:"I23", title:"Complicações pós-IAM", minutes:1.5 },
+        { cid:"I24", title:"Outras Isquemias Agudas", minutes:1.5 },
+        { cid:"I25", title:"Doença Isquêmica Crônica", minutes:2.0 },
+        { cid:"PREV", title:"Prevenção & Metas DCNT", minutes:1.0 }
+      ],
+      references: [
+        "Harrison’s Principles of Internal Medicine, 21st ed., Ch. 269–273",
+        "Plano de Ações Estratégicas DCNT Brasil 2021–2030"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "AGENDA_SLIDE" },
+        googleSlides: { layout: "SECTION_HEADER" }
+      }
+    };
+  </script>
+</body>
+</html>

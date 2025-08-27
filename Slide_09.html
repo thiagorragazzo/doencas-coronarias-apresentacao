@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prevenção DCNT - Alimentação Saudável (Versão Acadêmica)</title>
+
+  <!-- Metadados para conversão PowerPoint -->
+  <meta name="slide-number" content="9" />
+  <meta name="slide-layout" content="prevention-nutrition" />
+  <meta name="pptx-transition" content="slide" />
+  <meta name="harrison-validated" content="true" />
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+
+  <style>
+    /* --- Base / Dark theme --- */
+    .slide-container{width:1280px;height:720px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#334155 100%);margin:0 auto;display:flex;flex-direction:column;padding:40px 60px;position:relative;overflow:hidden;font-family:'Inter',sans-serif}
+    .slide-container::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 22% 28%,rgba(34,197,94,.08)0%,transparent 40%),radial-gradient(circle at 78% 72%,rgba(16,185,129,.06)0%,transparent 40%),radial-gradient(circle at 50% 50%,rgba(134,239,172,.04)0%,transparent 50%);animation:bgflow 18s ease-in-out infinite}
+    @keyframes bgflow{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+    /* Header */
+    .title{font-family:'Roboto Slab',serif;font-size:32px;font-weight:700;color:#fff;text-align:center;display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:6px}
+    .title .highlight{background:linear-gradient(135deg,#22C55E,#10B981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .subtitle{text-align:center;font-size:13px;color:#86EFAC;letter-spacing:.4px}
+
+    /* Badge */
+    .dcnt-badge{position:absolute;top:40px;right:60px;background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(16,185,129,.15));backdrop-filter:blur(10px);border:1px solid rgba(34,197,94,.35);padding:8px 16px;border-radius:20px;display:flex;gap:8px;align-items:center;animation:pulse 3s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}50%{box-shadow:0 0 20px 5px rgba(34,197,94,.35)}}
+    .dcnt-badge i{color:#4ADE80}
+
+    /* Grid */
+    .content-wrapper{position:relative;z-index:10;display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:20px;flex:1}
+
+    /* Cards genéricos */
+    .card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px}
+    .card-title{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600;color:#E2E8F0;margin-bottom:10px}
+    .muted{color:#94A3B8}
+
+    /* OMS/DCNT */
+    .who-card{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(16,185,129,.04));border:1px solid rgba(34,197,94,.2);border-left:3px solid #22C55E}
+    .rec-item{display:flex;align-items:center;gap:10px;padding:8px;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.15);border-radius:8px;transition:.25s}
+    .rec-item:hover{transform:translateX(3px);background:rgba(34,197,94,.1)}
+    .rec-icon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .icon-green{color:#22C55E;background:rgba(34,197,94,.15)}
+    .icon-red{color:#EF4444;background:rgba(239,68,68,.15)}
+    .icon-yellow{color:#EAB308;background:rgba(234,179,8,.15)}
+    .rec-label{font-size:11px;color:#E2E8F0;font-weight:600}
+    .rec-value{font-size:10px;color:#86EFAC}
+    .rec-target{margin-left:auto;font-size:12px;font-weight:700;color:#4ADE80}
+
+    /* Dietas */
+    .diet-item{border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,.08);transition:.25s}
+    .diet-item:hover{transform:scale(1.02)}
+    .diet-mediterranea{border-left:3px solid #22C55E}
+    .diet-dash{border-left:3px solid #3B82F6}
+    .diet-ocidental{border-left:3px solid #EF4444}
+    .diet-name{font-size:12px;font-weight:600;color:#fff;margin-bottom:4px}
+    .feature-badge{padding:2px 6px;border-radius:4px;font-size:9px;font-weight:500}
+    .badge-green{background:rgba(34,197,94,.2);color:#4ADE80}
+    .badge-blue{background:rgba(59,130,246,.2);color:#60A5FA}
+    .badge-red{background:rgba(239,68,68,.2);color:#F87171}
+    .diet-impact{display:flex;justify-content:space-between;color:#94A3B8;font-size:10px}
+    .impact-value{font-weight:700}
+
+    /* Radar */
+    .radar-container{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;height:210px}
+    .radar-title{text-align:center;font-size:11px;color:#CBD5E1;margin-bottom:8px}
+
+    /* Impacto/Metas */
+    .impact-card{background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(245,158,11,.05));border:1px solid rgba(239,68,68,.2)}
+    .impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .impact-box{background:rgba(255,255,255,.03);border-radius:10px;padding:10px;text-align:center}
+    .impact-num{font-size:18px;font-weight:700}
+    .impact-lbl{font-size:9px;color:#FCA5A5;text-transform:uppercase}
+
+    .goals-list{display:flex;flex-direction:column;gap:6px}
+    .goal{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:rgba(255,255,255,.03);border-radius:6px;border-left:2px solid}
+    .goal .t{font-size:10px;color:#CBD5E1}
+    .goal .v{font-size:11px;font-weight:700;color:#FCD34D}
+    .goal.salt{border-left-color:#3B82F6}.goal.sugar{border-left-color:#EAB308}.goal.trans{border-left-color:#EF4444}.goal.fruit{border-left-color:#22C55E}.goal.ultra{border-left-color:#8B5CF6}
+
+    /* Bottom evidências */
+    .bottom{position:absolute;bottom:60px;left:60px;right:60px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    .evidence{background:rgba(255,255,255,.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 16px;display:flex;gap:14px;align-items:center}
+    .ev-text{font-size:11px;color:#CBD5E1}
+    .ev-src{font-size:9px;color:#64748B;margin-top:2px}
+    .ev-kpis{display:flex;gap:18px}
+    .ev-kpi .v{font-size:16px;font-weight:700;color:#22C55E}
+    .ev-kpi .l{font-size:9px;color:#86EFAC}
+
+    /* Rodapés */
+    .ref{position:absolute;bottom:30px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);padding:6px 12px;border-radius:6px;font-size:10px}
+    .ref.harrison{right:360px;border:1px solid rgba(59,130,246,.3);color:#93C5FD}
+    .ref.oms{right:220px;border:1px solid rgba(234,179,8,.3);color:#FDE68A}
+    .ref.dcnt{right:60px;border:1px solid rgba(34,197,94,.3);color:#A7F3D0}
+
+    /* Navegação */
+    .slide-number{position:absolute;bottom:30px;left:60px;background:rgba(255,255,255,.05);backdrop-filter:blur(10px);padding:6px 12px;border-radius:6px;font-size:12px;color:#64748B}
+    .nav-indicator{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2)}
+    .nav-dot.active{background:#22C55E;width:24px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <div class="slide-container" data-slide="9" data-section="prevention-nutrition">
+    <!-- Header -->
+    <div class="dcnt-badge"><i class="fas fa-bullseye"></i><span>Meta 2030</span></div>
+    <h1 class="title"><i class="fas fa-apple-alt" style="color:#22C55E"></i><span class="highlight">Alimentação Saudável</span> na Prevenção Cardiovascular</h1>
+    <p class="subtitle">Evidências • Metas OMS/DCNT • Impacto Populacional</p>
+
+    <div class="content-wrapper">
+      <!-- Coluna 1 - OMS/DCNT -->
+      <div class="card who-card">
+        <div class="card-title"><i class="fas fa-globe text-green-400"></i>Recomendações OMS / DCNT 2030</div>
+        <div class="space-y-2">
+          <div class="rec-item">
+            <div class="rec-icon icon-green"><i class="fas fa-apple-alt"></i></div>
+            <div>
+              <div class="rec-label">Frutas e vegetais</div>
+              <div class="rec-value">Mínimo 5 porções/dia</div>
+            </div>
+            <div class="rec-target">≥400g</div>
+          </div>
+          <div class="rec-item">
+            <div class="rec-icon icon-red"><i class="fas fa-cube"></i></div>
+            <div>
+              <div class="rec-label">Sal (sódio)</div>
+              <div class="rec-value">Reduzir consumo diário</div>
+            </div>
+            <div class="rec-target">&lt;5g/dia</div>
+          </div>
+          <div class="rec-item">
+            <div class="rec-icon icon-yellow"><i class="fas fa-candy-cane"></i></div>
+            <div>
+              <div class="rec-label">Açúcares livres</div>
+              <div class="rec-value">Como % da energia total</div>
+            </div>
+            <div class="rec-target">&lt;10%</div>
+          </div>
+          <div class="rec-item">
+            <div class="rec-icon icon-red"><i class="fas fa-bacon"></i></div>
+            <div>
+              <div class="rec-label">Gorduras saturadas</div>
+              <div class="rec-value">Como % da energia total</div>
+            </div>
+            <div class="rec-target">&lt;10%</div>
+          </div>
+          <div class="rec-item">
+            <div class="rec-icon icon-red"><i class="fas fa-ban"></i></div>
+            <div>
+              <div class="rec-label">Gorduras trans (industriais)</div>
+              <div class="rec-value">Eliminar da dieta</div>
+            </div>
+            <div class="rec-target">&lt;1%</div>
+          </div>
+          <div class="rec-item">
+            <div class="rec-icon icon-red"><i class="fas fa-industry"></i></div>
+            <div>
+              <div class="rec-label">Ultraprocessados</div>
+              <div class="rec-value">Preferir in natura/minimamente processados</div>
+            </div>
+            <div class="rec-target">Reduzir</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna 2 - Dietas + Radar -->
+      <div class="space-y-3">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-chart-bar text-indigo-300"></i>Comparação de Padrões Alimentares</div>
+          <div class="space-y-2">
+            <div class="diet-item diet-mediterranea">
+              <div class="diet-name">Dieta Mediterrânea</div>
+              <div class="flex gap-2 mb-1">
+                <span class="feature-badge badge-green">Azeite</span>
+                <span class="feature-badge badge-green">Peixes</span>
+                <span class="feature-badge badge-green">Nozes</span>
+              </div>
+              <div class="diet-impact"><span>↓ Eventos CV (PREDIMED):</span><span class="impact-value" style="color:#4ADE80">≈ -30%</span></div>
+            </div>
+
+            <div class="diet-item diet-dash">
+              <div class="diet-name">Dieta DASH</div>
+              <div class="flex gap-2 mb-1">
+                <span class="feature-badge badge-blue">↓ Sódio</span>
+                <span class="feature-badge badge-blue">↑ Potássio</span>
+                <span class="feature-badge badge-blue">Grãos integrais</span>
+              </div>
+              <div class="diet-impact"><span>↓ PAS (DASH-Sodium):</span><span class="impact-value" style="color:#4ADE80">até -11 mmHg</span></div>
+            </div>
+
+            <div class="diet-item diet-ocidental">
+              <div class="diet-name">Padrão Ocidental</div>
+              <div class="flex gap-2 mb-1">
+                <span class="feature-badge badge-red">↑ Trans/Sat</span>
+                <span class="feature-badge badge-red">↑ Açúcar</span>
+                <span class="feature-badge badge-red">↑ Ultra</span>
+              </div>
+              <div class="diet-impact"><span>Tendência de risco CV:</span><span class="impact-value" style="color:#F87171">↑</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="radar-container">
+          <div class="radar-title">Perfil Nutricional Comparativo</div>
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Coluna 3 - Impacto + Metas -->
+      <div class="space-y-3">
+        <div class="card impact-card">
+          <div class="card-title"><i class="fas fa-chart-line text-red-300"></i>Impacto Populacional</div>
+          <div class="impact-grid">
+            <div class="impact-box">
+              <div class="impact-num" style="color:#FCD34D">≈11M</div>
+              <div class="impact-lbl">Mortes/ano atribuíveis à dieta (GBD)</div>
+            </div>
+            <div class="impact-box">
+              <div class="impact-num" style="color:#4ADE80">≈50%</div>
+              <div class="impact-lbl">Queda da mortalidade por DAC atribuída à prevenção (Harrison)</div>
+            </div>
+            <div class="impact-box">
+              <div class="impact-num" style="color:#4ADE80">NNT≈20</div>
+              <div class="impact-lbl">Med. p/ prevenir 1 evento (PREDIMED, 5a)</div>
+            </div>
+            <div class="impact-box">
+              <div class="impact-num" style="color:#60A5FA">-3g Na⁺</div>
+              <div class="impact-lbl">Redução relevante de PA/eventos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fas fa-flag-checkered text-yellow-300"></i>Metas Brasil 2030</div>
+          <div class="goals-list">
+            <div class="goal salt"><span class="t">Consumo de sal</span><span class="v">↓ 30%</span></div>
+            <div class="goal sugar"><span class="t">Bebidas açucaradas</span><span class="v">↓ 30%</span></div>
+            <div class="goal trans"><span class="t">Gordura trans industrial</span><span class="v">0%</span></div>
+            <div class="goal fruit"><span class="t">Frutas/vegetais</span><span class="v">↑ 30%</span></div>
+            <div class="goal ultra"><span class="t">Ultraprocessados</span><span class="v">↓</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom evidências -->
+    <div class="bottom">
+      <div class="evidence">
+        <i class="fas fa-microscope" style="color:#22C55E;font-size:20px"></i>
+        <div>
+          <div class="ev-text"><strong>Evidência:</strong> Padrões alimentares saudáveis reduzem eventos CV (Mediterrânea ≈ -30%); DASH reduz PA (até -11 mmHg). A restrição de sódio e a substituição de saturadas por poli-insaturadas reduzem risco CV.</div>
+          <div class="ev-src">Fontes: Harrison 21ed (cap. prevenção); NEJM (PREDIMED, DASH); OMS/WHO; GBD 2019.</div>
+        </div>
+        <div class="ev-kpis">
+          <div class="ev-kpi"><div class="v">-25–30%</div><div class="l">Eventos CV</div></div>
+          <div class="ev-kpi"><div class="v">-11 mmHg</div><div class="l">PA (DASH)</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="text-align:center">
+        <div class="text-sm" style="color:#4ADE80;font-weight:600;margin-bottom:6px">Ação Prioritária</div>
+        <a class="inline-flex items-center action-button" style="background:linear-gradient(135deg,#22C55E,#10B981);color:#fff;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;gap:6px">
+          <i class="fas fa-utensils"></i> Guia Alimentar para a População Brasileira
+        </a>
+        <div class="muted mt-2" style="font-size:10px">Educação alimentar + rotulagem + ambientes saudáveis</div>
+      </div>
+    </div>
+
+    <!-- Rodapés -->
+    <div class="ref harrison"><i class="fas fa-book-medical"></i>&nbsp;Harrison 21ed (Prevenção / IHD)</div>
+    <div class="ref oms"><i class="fas fa-globe"></i>&nbsp;OMS/WHO (Diretrizes Nutrição)</div>
+    <div class="ref dcnt"><i class="fas fa-check-circle"></i>&nbsp;Plano DCNT Brasil 2021–2030</div>
+
+    <!-- Navegação -->
+    <div class="slide-number">09 / 10</div>
+    <div class="nav-indicator">
+      <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+      <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+      <div class="nav-dot"></div><div class="nav-dot active"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+    </div>
+  </div>
+
+  <script>
+    // Radar Chart (perfil comparativo)
+    const rctx = document.getElementById('radarChart').getContext('2d');
+    new Chart(rctx,{
+      type:'radar',
+      data:{
+        labels:['Fibras','Ômega-3','Antioxidantes','Sódio ↓','Saturada ↓'],
+        datasets:[
+          {label:'Mediterrânea',data:[90,90,92,85,88],borderColor:'#22C55E',backgroundColor:'rgba(34,197,94,.2)',borderWidth:2,pointRadius:2},
+          {label:'DASH',data:[85,70,80,95,85],borderColor:'#3B82F6',backgroundColor:'rgba(59,130,246,.2)',borderWidth:2,pointRadius:2},
+          {label:'Ocidental',data:[35,25,35,20,20],borderColor:'#EF4444',backgroundColor:'rgba(239,68,68,.2)',borderWidth:2,pointRadius:2}
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'bottom',labels:{color:'#94A3B8',font:{size:9}}}},
+        scales:{r:{angleLines:{color:'rgba(255,255,255,.06)'},
+          grid:{color:'rgba(255,255,255,.06)'},
+          pointLabels:{color:'#CBD5E1',font:{size:9}},
+          ticks:{display:false},suggestedMin:0,suggestedMax:100}}
+      }
+    });
+
+    // Metadados para conversão
+    window.slideMetadata = {
+      slideNumber: 9,
+      title: "Prevenção - Alimentação Saudável (DCNT)",
+      layout: "LAYOUT_NUTRITION_PREVENTION",
+      transition: { type: "slide", duration: 1 },
+      notes: `
+        Fontes: Harrison 21ed (cap. prevenção/IHD), OMS/WHO (nutrição), GBD 2019, NEJM (PREDIMED, DASH/DASH-Sodium).
+        Pontos-chave:
+        • Mediterrânea: ≈ -30% eventos CV (PREDIMED); NNT ~20/5 anos.
+        • DASH: redução pressórica clinicamente relevante (até -11 mmHg em cenários de maior sódio).
+        • OMS/DCNT: frutas/verduras ≥400 g/d; sal <5 g/d; açúcar <10% kcal; sat <10%; trans <1%; reduzir ultraprocessados.
+        • Prevenção explica ≈ metade da queda da mortalidade por DAC nas últimas décadas (Harrison).
+      `,
+      references: [
+        "Harrison's Principles of Internal Medicine, 21st Ed, Prevention/IHD",
+        "WHO Nutrition Guidelines",
+        "GBD 2019 Diet Collaborators",
+        "NEJM: PREDIMED; DASH / DASH-Sodium"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "PREVENTION_NUTRITION" },
+        googleSlides: { layout: "TITLE_AND_THREE_COLUMNS" }
+      }
+    };
+  </script>
+</body>
+</html>

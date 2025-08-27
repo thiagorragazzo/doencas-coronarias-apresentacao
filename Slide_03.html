@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>I21 — IAM • Epidemiologia & Impacto</title>
+
+  <!-- Metadados para pipeline de conversão -->
+  <meta name="slide-number" content="3">
+  <meta name="slide-layout" content="epidemiology-data">
+  <meta name="pptx-transition" content="slide">
+  <meta name="harrison-validated" content="true">
+
+  <style>
+    :root{
+      --bg1:#0F172A; --bg2:#1E293B; --ink:#E2E8F0; --muted:#94A3B8;
+      --red:#EF4444; --amber:#F59E0B; --blue:#3B82F6; --teal:#14B8A6; --green:#10B981;
+      --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+    .slide{width:1280px;height:720px;margin:0 auto;position:relative;overflow:hidden;padding:44px 64px}
+    .bg{position:absolute;inset:-20%;background:
+      radial-gradient(560px 300px at 12% 18%, rgba(239,68,68,.10), transparent 60%),
+      radial-gradient(520px 260px at 86% 84%, rgba(59,130,246,.08), transparent 60%);
+      pointer-events:none}
+    header{text-align:center;margin-bottom:20px;position:relative;z-index:2}
+    h1{margin:0;font-size:38px;font-weight:800;letter-spacing:.2px;text-shadow:0 8px 30px rgba(0,0,0,.35)}
+    .sub{margin-top:6px;font-size:14px;color:var(--muted)}
+    .badge{position:absolute;top:46px;right:64px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);
+      color:#fecaca;font-size:12px;border-radius:999px;padding:8px 14px}
+
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:stretch;position:relative;z-index:2}
+    .panel{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:18px}
+
+    /* Cards à esquerda */
+    .cards{display:grid;grid-template-columns:1fr;gap:12px}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+    .ctitle{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:#fff;margin-bottom:6px}
+    .cicon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+    .c1{background:rgba(239,68,68,.15);color:#F87171}
+    .c2{background:rgba(59,130,246,.15);color:#60A5FA}
+    .c3{background:rgba(245,158,11,.15);color:#FBBF24}
+    .c4{background:rgba(20,184,166,.15);color:#2DD4BF}
+    .value{font-size:28px;font-weight:800;margin:2px 0;color:#fff}
+    .unit{font-size:13px;color:#FCA5A5;margin-left:6px}
+    .desc{font-size:12px;color:var(--muted)}
+    .bar{margin-top:10px;height:6px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+    .fill{height:100%;background:linear-gradient(90deg,var(--red),#F87171)}
+
+    /* Visualizações à direita */
+    .block{margin-bottom:14px}
+    .btitle{font-size:14px;font-weight:700;margin:0 0 8px 0;color:#E2E8F0;display:flex;align-items:center;gap:8px}
+    .note{font-size:11px;color:var(--muted)}
+    .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+    .lg{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .sq{width:10px;height:10px;border-radius:3px}
+    .pill{display:inline-flex;gap:6px;align-items:center;border:1px solid rgba(34,197,94,.35);color:#a7f3d0;
+      background:rgba(34,197,94,.08);padding:6px 10px;border-radius:8px;font-size:11px}
+
+    /* Rodapés */
+    .refs{position:absolute;left:64px;right:64px;bottom:26px;display:flex;justify-content:space-between;align-items:center}
+    .refs .left{font-size:11px;color:var(--muted)}
+    .slideNo{position:absolute;bottom:26px;left:64px;font-size:12px;color:#64748B;background:rgba(255,255,255,.05);padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.08)}
+    .nav{position:absolute;left:50%;transform:translateX(-50%);bottom:26px;display:flex;gap:6px}
+    .dotnav{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
+    .dotnav.active{background:var(--red);width:24px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <div class="slide" role="group" aria-label="Slide 3 — IAM: Epidemiologia">
+    <div class="bg"></div>
+
+    <header>
+      <h1>I21 — Infarto Agudo do Miocárdio • Epidemiologia & Impacto</h1>
+      <div class="sub">Projeto de Extensão V • Turma 5º Semestre B • 27/08/2025</div>
+      <div class="badge">Principal causa de morte cardiovascular</div>
+    </header>
+
+    <section class="grid">
+      <!-- Esquerda: cards de dados -->
+      <div class="panel">
+        <div class="cards">
+          <div class="card">
+            <div class="ctitle"><div class="cicon c1">🌍</div><span>Doença isquêmica do coração — Global</span></div>
+            <div class="value">8,9<span class="unit"> milhões/ano (2017)</span></div>
+            <div class="desc">Líder de mortalidade global em 2017. Harrison 21ª ed. (Cap. 269) descreve a IHD como principal causa de óbito mundial.</div>
+            <div class="bar"><div class="fill" style="width:60%"></div></div>
+          </div>
+
+          <div class="card">
+            <div class="ctitle"><div class="cicon c2">❤️</div><span>Doenças cardiovasculares — Global</span></div>
+            <div class="value">17,9<span class="unit"> milhões/ano</span></div>
+            <div class="desc">Carga total de DCV; a IHD (infarto/angina) responde pela maior fração das mortes.</div>
+          </div>
+
+          <div class="card">
+            <div class="ctitle"><div class="cicon c3">🏥</div><span>Mortalidade hospitalar no IAM</span></div>
+            <div class="value">5–10%<span class="unit"> com reperfusão</span></div>
+            <div class="desc">Sem tratamento oportuno, pode chegar a 25–30%. Ênfase em “tempo‑é‑músculo”.</div>
+          </div>
+
+          <div class="card">
+            <div class="ctitle"><div class="cicon c4">👥</div><span>Perfil demográfico</span></div>
+            <div class="desc">Pico 60–70 anos; razão M:F ≈ 2:1 até ~65 anos, equalizando em idades avançadas. Fatores de risco: LDL↑, tabagismo, HAS, DM, sedentarismo.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direita: visualizações -->
+      <div class="panel">
+        <div class="block">
+          <h3 class="btitle">Tendência temporal — Mortalidade por DCV (exemplo ilustrativo)</h3>
+          <!-- Gráfico de linha em SVG (sem libs) -->
+          <figure role="img" aria-label="Linha de tendência 2010–2023">
+            <svg viewBox="0 0 360 180" width="100%" height="180">
+              <!-- grade -->
+              <g stroke="rgba(255,255,255,.08)" stroke-width="1">
+                <line x1="40" y1="150" x2="340" y2="150"/><line x1="40" y1="120" x2="340" y2="120"/>
+                <line x1="40" y1="90" x2="340" y2="90"/><line x1="40" y1="60" x2="340" y2="60"/>
+              </g>
+              <!-- eixos -->
+              <g stroke="rgba(255,255,255,.2)" stroke-width="1">
+                <line x1="40" y1="20" x2="40" y2="150"/><line x1="40" y1="150" x2="340" y2="150"/>
+              </g>
+              <!-- labels eixo Y -->
+              <g fill="#94A3B8" font-size="10">
+                <text x="6" y="153">50</text><text x="6" y="123">55</text><text x="6" y="93">60</text><text x="6" y="63">65</text>
+              </g>
+              <!-- linha (pontos mapeados manualmente para exemplo de queda) -->
+              <polyline fill="none" stroke="#EF4444" stroke-width="2"
+                points="40,120 80,118 120,115 160,110 200,108 240,106 280,102 320,100"/>
+              <!-- área -->
+              <polygon fill="rgba(239,68,68,.25)"
+                points="40,120 80,118 120,115 160,110 200,108 240,106 280,102 320,100 320,150 40,150"/>
+              <!-- pontos -->
+              <g fill="#EF4444" stroke="#fff" stroke-width="1">
+                <circle cx="40" cy="120" r="3"/><circle cx="80" cy="118" r="3"/><circle cx="120" cy="115" r="3"/>
+                <circle cx="160" cy="110" r="3"/><circle cx="200" cy="108" r="3"/><circle cx="240" cy="106" r="3"/>
+                <circle cx="280" cy="102" r="3"/><circle cx="320" cy="100" r="3"/>
+              </g>
+              <!-- eixo X labels -->
+              <g fill="#94A3B8" font-size="10">
+                <text x="34" y="165">2010</text><text x="74" y="165">2012</text><text x="114" y="165">2014</text>
+                <text x="154" y="165">2016</text><text x="194" y="165">2018</text><text x="234" y="165">2020</text>
+                <text x="274" y="165">2022</text><text x="314" y="165">2023</text>
+              </g>
+            </svg>
+          </figure>
+          <div class="note">Curva estilizada para layout. Substituir por série oficial (DATASUS/GBD) se desejado.</div>
+        </div>
+
+        <div class="block">
+          <h3 class="btitle">Meta DCNT 2030</h3>
+          <span class="pill">Reduzir mortalidade prematura (30–69 anos) por DCNT em ~1/3 até 2030</span>
+          <div class="legend" style="margin-top:10px">
+            <div class="lg"><span class="sq" style="background:var(--red)"></span>Tratamento oportuno (reperfusão, UCO)</div>
+            <div class="lg"><span class="sq" style="background:var(--green)"></span>Prevenção: tabaco↓, LDL↓, PA↓, DM controle</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <div class="refs">
+      <div class="left">Base técnica: Harrison 21ª ed. (Cap. 269–271) • Foco em IHD/IAM e DCV globais.</div>
+      <div class="right pill" aria-label="Integração DCNT">Plano DCNT 2021–2030</div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="slideNo">03 / 10</div>
+    <div class="nav" aria-hidden="true">
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav active"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+    </div>
+  </div>
+
+  <script>
+    // Metadados para exportação (Manus)
+    window.slideMetadata = {
+      slideNumber: 3,
+      title: "IAM — Epidemiologia & Impacto",
+      layout: "LAYOUT_DATA_VISUALIZATION",
+      transition: { type: "slide", duration: 0.8 },
+      course: "Projeto de Extensão V",
+      classGroup: "5º Semestre B",
+      dateISO: "2025-08-27",
+      bullets: [
+        "IHD: principal causa de morte global (Harrison 21ª)",
+        "DCV: ~17,9 milhões de óbitos/ano",
+        "Mortalidade hospitalar IAM 5–10% com reperfusão",
+        "Pico de incidência: 60–70 anos; M>F até ~65"
+      ],
+      references: [
+        "Harrison’s Principles of Internal Medicine, 21st ed., Ch. 269–271",
+        "Plano de Ações Estratégicas DCNT Brasil 2021–2030"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "DATA_SLIDE" },
+        googleSlides: { layout: "TITLE_AND_TWO_COLUMNS" }
+      }
+    };
+  </script>
+</body>
+</html>

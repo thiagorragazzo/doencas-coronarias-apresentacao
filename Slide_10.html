@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Conclusão - Prevenção e Impacto DCNT 2030</title>
+
+  <!-- Metadados para conversão PowerPoint -->
+  <meta name="slide-number" content="10">
+  <meta name="slide-layout" content="conclusion-prevention">
+  <meta name="pptx-transition" content="fade">
+  <meta name="dcnt-validated" content="true">
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <style>
+    /* Container */
+    .slide-container{width:1280px;height:720px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 40%,#1F2937 70%,#111827 100%);margin:0 auto;display:flex;flex-direction:column;padding:35px 50px;position:relative;overflow:hidden;font-family:'Inter',sans-serif}
+    /* BG */
+    .success-particles{position:absolute;inset:0;overflow:hidden;z-index:1}
+    .particle{position:absolute;width:4px;height:4px;background:linear-gradient(135deg,#22C55E,#10B981);border-radius:50%;opacity:0;animation:rise 8s linear infinite}
+    @keyframes rise{0%{transform:translateY(100vh) scale(0);opacity:0}10%,90%{opacity:1}100%{transform:translateY(-100vh) scale(1.5);opacity:0}}
+    .heartbeat-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:780px;height:780px;background:radial-gradient(circle,rgba(34,197,94,.12) 0%,transparent 70%);animation:heartbeat 2s ease-in-out infinite;z-index:1}
+    @keyframes heartbeat{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.08);opacity:.12}}
+    /* Header */
+    .header-section{text-align:center;z-index:10;margin-bottom:18px}
+    .title{font-family:'Roboto Slab',serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:8px;text-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;gap:14px}
+    .title .highlight{background:linear-gradient(135deg,#22C55E,#10B981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .main-message{display:inline-block;margin:0 auto;background:linear-gradient(135deg,rgba(34,197,94,.16),rgba(16,185,129,.1));border:1px solid rgba(34,197,94,.35);border-radius:10px;padding:10px 16px}
+    .main-message-text{font-size:16px;font-weight:600;color:#A7F3D0}
+    .main-message-number{font-size:24px;font-weight:800;color:#22C55E;margin:0 4px}
+    /* Badge */
+    .dcnt-badge-final{position:absolute;top:32px;right:48px;background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(16,185,129,.15));backdrop-filter:blur(10px);border:2px solid rgba(34,197,94,.42);padding:10px 22px;border-radius:22px;display:flex;align-items:center;gap:10px;animation:glow 2s ease-in-out infinite;z-index:20}
+    @keyframes glow{0%,100%{box-shadow:0 0 18px rgba(34,197,94,.32)}50%{box-shadow:0 0 36px rgba(34,197,94,.58)}}
+    .dcnt-badge-final i{color:#4ADE80;font-size:18px;animation:spin 4s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .dcnt-badge-final span{font-size:13px;color:#A7F3D0;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+    /* Grid */
+    .content-wrapper{z-index:10;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:18px;flex:1}
+    /* Left */
+    .metas-card{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px}
+    .metas-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(34,197,94,.22)}
+    .metas-icon{width:30px;height:30px;background:linear-gradient(135deg,rgba(34,197,94,.22),rgba(16,185,129,.12));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#22C55E}
+    .metas-title{font-size:13px;font-weight:700;color:#A7F3D0}
+    .meta-item{display:flex;align-items:center;gap:8px;padding:6px 8px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:4px;border-left:2px solid;opacity:0;transform:translateX(-16px);animation:in .5s ease forwards}
+    .meta-item:nth-child(2){animation-delay:.05s}.meta-item:nth-child(3){animation-delay:.1s}.meta-item:nth-child(4){animation-delay:.15s}.meta-item:nth-child(5){animation-delay:.2s}.meta-item:nth-child(6){animation-delay:.25s}.meta-item:nth-child(7){animation-delay:.3s}
+    @keyframes in{to{opacity:1;transform:translateX(0)}}
+    .meta-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+    .meta-increase{border-left-color:#22C55E}.meta-increase .meta-icon{color:#22C55E;background:rgba(34,197,94,.14)}
+    .meta-decrease{border-left-color:#EF4444}.meta-decrease .meta-icon{color:#F87171;background:rgba(239,68,68,.14)}
+    .meta-stop{border-left-color:#EAB308}.meta-stop .meta-icon{color:#FCD34D;background:rgba(234,179,8,.14)}
+    .meta-text{flex:1;font-size:10px;color:#CBD5E1}
+    .meta-target{font-size:13px;font-weight:800}
+    .target-increase{color:#4ADE80}.target-decrease{color:#F87171}.target-stop{color:#FCD34D}
+    /* Middle */
+    .impact-visualization{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px}
+    .viz-header{font-size:13px;font-weight:700;color:#E2E8F0;text-align:center;margin-bottom:6px}
+    .viz-sub{font-size:10px;color:#94A3B8;text-align:center;margin-top:-2px;margin-bottom:6px}
+    .chart-container{height:160px;position:relative}
+    .impact-stats{background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));border:1px solid rgba(99,102,241,.22);border-radius:12px;padding:12px}
+    .impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .impact-item{background:rgba(255,255,255,.03);border-radius:8px;padding:8px;text-align:center;transition:.25s}
+    .impact-item:hover{transform:scale(1.04);background:rgba(99,102,241,.1)}
+    .impact-value{font-size:20px;font-weight:800}
+    .value-reduction{color:#22C55E}.value-savings{color:#3B82F6}.value-lives{color:#FCD34D}.value-quality{color:#8B5CF6}
+    .impact-label{font-size:9px;color:#94A3B8;text-transform:uppercase;letter-spacing:.4px}
+    /* Right */
+    .strategies-card{background:rgba(255,255,255,.05);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px}
+    .strategies-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;font-weight:700;color:#E2E8F0}
+    .strategy-list{display:flex;flex-direction:column;gap:4px}
+    .strategy-item{display:flex;align-items:center;gap:8px;padding:6px 8px;background:rgba(59,130,246,.06);border-left:2px solid #3B82F6;border-radius:6px}
+    .strategy-check{color:#60A5FA;font-size:10px}
+    .strategy-text{font-size:10px;color:#CBD5E1}
+    .alert-card{background:linear-gradient(135deg,rgba(239,68,68,.16),rgba(220,38,38,.12));border:2px solid rgba(239,68,68,.45);border-radius:12px;padding:12px;animation:alert 2s ease-in-out infinite}
+    @keyframes alert{0%,100%{border-color:rgba(239,68,68,.45)}50%{border-color:rgba(239,68,68,.85);box-shadow:0 0 18px rgba(239,68,68,.28)}}
+    .alert-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px}
+    .alert-icon{width:38px;height:38px;background:rgba(239,68,68,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#F87171;font-size:18px;animation:blink 1s ease-in-out infinite}
+    @keyframes blink{50%{opacity:.3}}
+    .alert-title{font-size:13px;font-weight:800;color:#FCA5A5;text-transform:uppercase}
+    .symptoms-list{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:6px}
+    .symptom{display:flex;align-items:center;gap:4px;font-size:10px;color:#FCA5A5}
+    .symptom i{font-size:8px;color:#F87171}
+    .emergency-number{background:#EF4444;color:#fff;padding:8px;border-radius:8px;text-align:center;font-size:18px;font-weight:800;letter-spacing:1px;animation:num 1.5s ease-in-out infinite}
+    @keyframes num{50%{transform:scale(1.05)}}
+    /* Bottom */
+    .bottom-section{position:absolute;bottom:50px;left:50px;right:50px;display:grid;grid-template-columns:2fr 1fr;gap:18px;z-index:15}
+    .timeline-2030{background:rgba(255,255,255,.03);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+    .timeline-title{font-size:11px;font-weight:700;color:#A7F3D0;margin-right:8px}
+    .timeline-bar{flex:1;height:28px;background:rgba(255,255,255,.06);border-radius:14px;position:relative;overflow:hidden}
+    .timeline-progress{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#22C55E,#10B981);border-radius:14px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;animation:grow 2s ease-out forwards}
+    @keyframes grow{from{width:0}to{width:30%}}
+    .timeline-text{font-size:10px;color:#fff;font-weight:700}
+    .timeline-markers{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
+    .marker{font-size:9px;color:#64748B}
+    .qr-section{background:linear-gradient(135deg,rgba(34,197,94,.11),rgba(16,185,129,.06));border:1px solid rgba(34,197,94,.32);border-radius:10px;padding:10px;display:flex;align-items:center;gap:10px}
+    #qrcode{width:60px;height:60px;background:#fff;padding:5px;border-radius:5px}
+    .qr-title{font-size:11px;font-weight:700;color:#A7F3D0}
+    .qr-desc{font-size:9px;color:#86EFAC}
+    /* Nav + refs */
+    .slide-number{position:absolute;bottom:24px;left:50px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);padding:6px 12px;border-radius:6px;font-size:12px;color:#64748B;font-weight:600;z-index:20}
+    .nav-indicator{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:20}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);transition:.2s}
+    .nav-dot.active{background:#22C55E;width:24px;border-radius:4px;box-shadow:0 0 10px rgba(34,197,94,.5)}
+    .references-final{position:absolute;bottom:24px;right:50px;display:flex;gap:8px;z-index:20}
+    .ref-badge{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:6px;display:flex;align-items:center;gap:4px;font-size:9px;color:#94A3B8}
+    .ref-badge i{font-size:10px}
+  </style>
+</head>
+<body>
+  <div class="slide-container" data-slide="10" data-section="conclusion">
+    <!-- Partículas -->
+    <div class="success-particles">
+      <script>
+        for(let i=0;i<28;i++){
+          document.write(`<div class="particle" style="left:${Math.random()*100}%;animation-delay:${Math.random()*8}s;"></div>`);
+        }
+      </script>
+    </div>
+    <div class="heartbeat-bg"></div>
+
+    <!-- Header -->
+    <div class="header-section">
+      <h1 class="title">
+        <i class="fas fa-heart" style="color:#22C55E"></i>
+        <span class="highlight">Prevenção é o Melhor Tratamento</span>
+      </h1>
+      <div class="main-message">
+        <p class="main-message-text">Meta DCNT 2030: Reduzir em <span class="main-message-number">1/3</span> a mortalidade prematura (30–69 anos)</p>
+      </div>
+    </div>
+
+    <!-- Badge -->
+    <div class="dcnt-badge-final">
+      <i class="fas fa-trophy"></i>
+      <span>DCNT 2021–2030</span>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="content-wrapper">
+      <!-- Metas -->
+      <div class="left-column">
+        <div class="metas-card">
+          <div class="metas-header">
+            <div class="metas-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="metas-title">6 Metas Específicas DCNT</div>
+          </div>
+
+          <div class="meta-item meta-increase">
+            <div class="meta-icon"><i class="fas fa-running"></i></div>
+            <div class="meta-text">Atividade física no lazer</div>
+            <div class="meta-target target-increase">↑30%</div>
+          </div>
+
+          <div class="meta-item meta-increase">
+            <div class="meta-icon"><i class="fas fa-apple-alt"></i></div>
+            <div class="meta-text">Frutas e hortaliças</div>
+            <div class="meta-target target-increase">↑30%</div>
+          </div>
+
+          <div class="meta-item meta-decrease">
+            <div class="meta-icon"><i class="fas fa-glass-whiskey"></i></div>
+            <div class="meta-text">Bebidas adoçadas</div>
+            <div class="meta-target target-decrease">↓30%</div>
+          </div>
+
+          <div class="meta-item meta-decrease">
+            <div class="meta-icon"><i class="fas fa-smoking"></i></div>
+            <div class="meta-text">Tabagismo em adultos</div>
+            <div class="meta-target target-decrease">↓40%</div>
+          </div>
+
+          <div class="meta-item meta-stop">
+            <div class="meta-icon"><i class="fas fa-weight"></i></div>
+            <div class="meta-text">Crescimento da obesidade</div>
+            <div class="meta-target target-stop">DETER</div>
+          </div>
+
+          <div class="meta-item meta-decrease">
+            <div class="meta-icon"><i class="fas fa-industry"></i></div>
+            <div class="meta-text">Ultraprocessados</div>
+            <div class="meta-target target-decrease">↓50%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="middle-column">
+        <div class="impact-visualization">
+          <div class="viz-header">Impacto Projetado das Intervenções</div>
+          <div class="viz-sub">*Projeções ilustrativas — ajustar com dados locais</div>
+          <div class="chart-container"><canvas id="impactChart"></canvas></div>
+        </div>
+
+        <div class="impact-stats">
+          <div class="impact-grid">
+            <div class="impact-item">
+              <div class="impact-value value-reduction">25%</div>
+              <div class="impact-label">↓ Incidência IAM</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-value value-reduction">30%</div>
+              <div class="impact-label">↓ Mort. Prematura</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-value value-savings">R$4.2bi</div>
+              <div class="impact-label">Economia SUS</div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-value value-lives">100 mil</div>
+              <div class="impact-label">Vidas/ano</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estratégias & Alerta -->
+      <div class="right-column">
+        <div class="strategies-card">
+          <div class="strategies-header"><i class="fas fa-shield-alt"></i>Estratégias Comprovadas</div>
+          <div class="strategy-list">
+            <div class="strategy-item"><i class="fas fa-check strategy-check"></i><div class="strategy-text">Controle rigoroso HAS/DM/DLP (ABC)</div></div>
+            <div class="strategy-item"><i class="fas fa-check strategy-check"></i><div class="strategy-text">Dieta Mediterrânea/DASH</div></div>
+            <div class="strategy-item"><i class="fas fa-check strategy-check"></i><div class="strategy-text">≥150 min/sem exercício moderado</div></div>
+            <div class="strategy-item"><i class="fas fa-check strategy-check"></i><div class="strategy-text">Estatinas quando indicadas</div></div>
+            <div class="strategy-item"><i class="fas fa-check strategy-check"></i><div class="strategy-text">Cessação do tabagismo</div></div>
+          </div>
+        </div>
+
+        <div class="alert-card">
+          <div class="alert-header">
+            <div class="alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="alert-title">Sinais de Alarme</div>
+          </div>
+          <div class="symptoms-list">
+            <div class="symptom"><i class="fas fa-compress-arrows-alt"></i><span>Dor torácica</span></div>
+            <div class="symptom"><i class="fas fa-lungs"></i><span>Dispneia</span></div>
+            <div class="symptom"><i class="fas fa-tint"></i><span>Sudorese</span></div>
+          </div>
+          <div class="emergency-number">192 / SAMU</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="bottom-section">
+      <div class="timeline-2030">
+        <div class="timeline-title">Progresso 2021→2030</div>
+        <div class="timeline-bar">
+          <div class="timeline-progress"><span class="timeline-text">30% concluído</span></div>
+          <div class="timeline-markers"><span class="marker">2021</span><span class="marker">2025</span><span class="marker">2030</span></div>
+        </div>
+      </div>
+
+      <div class="qr-section">
+        <div id="qrcode"></div>
+        <div class="qr-text">
+          <div class="qr-title">Recursos Adicionais</div>
+          <div class="qr-desc">Plano DCNT Completo + Guias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="slide-number">10 / 10</div>
+    <div class="nav-indicator">
+      <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+      <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot active"></div>
+    </div>
+
+    <!-- Refs -->
+    <div class="references-final">
+      <div class="ref-badge"><i class="fas fa-book-medical"></i><span>Harrison 21ed</span></div>
+      <div class="ref-badge"><i class="fas fa-globe"></i><span>OMS 2023</span></div>
+      <div class="ref-badge"><i class="fas fa-check-circle"></i><span>DCNT 2030</span></div>
+    </div>
+  </div>
+
+  <script>
+    // QR Code
+    new QRCode(document.getElementById("qrcode"),{
+      text:"https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/doencas-cronicas-nao-transmissiveis-dcnt/plano-dcnt-2021-2030",
+      width:60,height:60,colorDark:"#22C55E",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H
+    });
+
+    // Impact Chart
+    const ctx = document.getElementById('impactChart').getContext('2d');
+    const g1 = ctx.createLinearGradient(0,0,0,160); g1.addColorStop(0,'rgba(34,197,94,.82)'); g1.addColorStop(1,'rgba(34,197,94,.22)');
+    const g2 = ctx.createLinearGradient(0,0,0,160); g2.addColorStop(0,'rgba(234,179,8,.82)'); g2.addColorStop(1,'rgba(234,179,8,.22)');
+    new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:['IAM','AVC','ICC','DM2','HAS','Global'],
+        datasets:[{label:'Redução com Intervenção (%)',
+          data:[25,22,18,30,35,30],
+          backgroundColor:[g1,g1,g2,g1,g1,g1],
+          borderColor:['#22C55E','#22C55E','#EAB308','#22C55E','#22C55E','#22C55E'],
+          borderWidth:2,borderRadius:8
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},
+          tooltip:{backgroundColor:'rgba(30,41,59,.95)',titleColor:'#fff',bodyColor:'#CBD5E1',borderColor:'rgba(34,197,94,.3)',borderWidth:1,cornerRadius:8,padding:10,
+            callbacks:{label:(c)=>'↓ '+c.parsed.y+'% redução',afterLabel:(c)=>{
+              const map={'IAM':'~30.000 casos/ano','AVC':'~25.000 casos/ano','ICC':'~15.000 casos/ano','DM2':'~50.000 casos/ano','HAS':'~100.000 casos/ano','Global':'~100.000 mortes/ano'};
+              return map[c.label]||'';
+            }}
+          }
+        },
+        scales:{
+          y:{beginAtZero:true,max:40,grid:{color:'rgba(255,255,255,.05)',drawBorder:false},
+             ticks:{color:'#94A3B8',font:{size:10},callback:(v)=>v+'%'}},
+          x:{grid:{display:false},ticks:{color:'#CBD5E1',font:{size:11,weight:600}}}
+        },
+        animation:{duration:1800,easing:'easeOutQuart'}
+      }
+    });
+
+    // Animações simples
+    document.addEventListener('DOMContentLoaded',()=>{
+      // Destaque sequencial das metas
+      const metas = document.querySelectorAll('.meta-target');
+      let i=0; setInterval(()=>{metas.forEach(m=>m.style.transform='scale(1)'); metas[i].style.transform='scale(1.25)'; i=(i+1)%metas.length;},2000);
+    });
+
+    // Metadados para conversão
+    window.slideMetadata = {
+      slideNumber: 10,
+      title: "Conclusão - Prevenção e Impacto DCNT 2030",
+      layout: "LAYOUT_CONCLUSION_SUMMARY",
+      transition: { type: "fade", duration: 1.2 },
+      notes: `
+        Mensagem central: Reduzir em 1/3 a mortalidade prematura por DCNT até 2030.
+        Metas específicas: ↑ atividade física e frutas/verduras; ↓ bebidas adoçadas e tabagismo; deter obesidade; ↓ ultraprocessados.
+        Estratégias: controle HAS/DM/DLP, dieta Mediterrânea/DASH, exercício, estatinas quando indicado, cessar tabagismo.
+        Gráfico: projeções ilustrativas — ajustar com dados locais/serviço.
+        Referências de base: Harrison 21ed (prevenção), OMS/WHO NCD, Plano DCNT Brasil 2021–2030.
+        Tempo apresentação: 1 min (fechamento).
+      `,
+      references: [
+        "Harrison's Principles of Internal Medicine, 21st Ed",
+        "WHO Global Action Plan for NCDs",
+        "Plano DCNT Brasil 2021–2030"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "CONCLUSION_IMPACT", animations: true },
+        googleSlides: { layout: "TITLE_AND_CONCLUSION", speakerNotes: true }
+      }
+    };
+  </script>
+</body>
+</html>

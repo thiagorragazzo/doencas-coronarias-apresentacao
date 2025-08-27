@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>I22 — IAM Recorrente (até 28 dias)</title>
+
+  <!-- Metadados p/ pipeline (Manus) -->
+  <meta name="slide-number" content="5" />
+  <meta name="slide-layout" content="recurrent-mi" />
+  <meta name="pptx-transition" content="slide" />
+  <meta name="harrison-validated" content="true" />
+  <meta name="course" content="Projeto de Extensão V" />
+  <meta name="class-group" content="Turma 5º Semestre B" />
+  <meta name="date" content="2025-08-27" />
+
+  <style>
+    :root{
+      --bg1:#0F172A; --bg2:#1E293B; --ink:#E2E8F0; --muted:#94A3B8;
+      --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+      --red:#EF4444; --orange:#F97316; --blue:#3B82F6; --green:#10B981; --teal:#14B8A6; --amber:#F59E0B;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+    .slide{width:1280px;height:720px;margin:0 auto;position:relative;overflow:hidden;padding:44px 64px}
+    .bg{position:absolute;inset:-20%;background:
+      radial-gradient(560px 320px at 22% 20%, rgba(249,115,22,.09), transparent 60%),
+      radial-gradient(520px 260px at 86% 84%, rgba(239,68,68,.08), transparent 60%); pointer-events:none}
+    header{text-align:center;margin-bottom:18px;position:relative;z-index:2}
+    h1{margin:0;font-size:36px;font-weight:800;text-shadow:0 8px 30px rgba(0,0,0,.35)}
+    .sub{margin-top:6px;font-size:14px;color:var(--muted)}
+    .badge{position:absolute;top:46px;right:64px;background:linear-gradient(135deg, rgba(249,115,22,.16), rgba(239,68,68,.10));
+      border:1px solid rgba(249,115,22,.40); color:#FED7AA; font-size:12px;border-radius:999px;padding:8px 14px}
+
+    .grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:stretch;position:relative;z-index:2}
+    .panel{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:18px}
+
+    /* Coluna esquerda */
+    .block{margin-bottom:14px}
+    .btitle{font-size:14px;font-weight:800;margin:0 0 8px;color:#fff;display:flex;align-items:center;gap:8px}
+    .list{display:grid;gap:8px}
+    .item{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px}
+    .dot{width:16px;height:16px;border-radius:4px;background:rgba(249,115,22,.4);border:1px solid rgba(249,115,22,.6);margin:auto}
+    .hint{font-size:12px;color:var(--muted)}
+
+    .pill{display:inline-flex;gap:6px;align-items:center;border:1px solid rgba(249,115,22,.35);color:#FED7AA;
+      background:rgba(249,115,22,.08);padding:6px 10px;border-radius:8px;font-size:11px}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px}
+    .tag{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.2);font-size:10px;color:#FCA5A5;margin-left:6px}
+
+    .risk{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+    .riskItem{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px}
+    .riskBadge{font-size:11px;color:#FCA5A5;margin-left:auto;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);padding:2px 6px;border-radius:6px}
+    .riskIcon{width:28px;height:28px;border-radius:8px;background:rgba(249,115,22,.18);display:grid;place-items:center;color:#FDBA74;font-weight:900}
+
+    /* Coluna direita */
+    .timeline{position:relative;padding-left:18px;display:grid;gap:10px;margin-bottom:12px}
+    .timeline::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--orange),var(--red))}
+    .trow{display:grid;grid-template-columns:100px 1fr;gap:10px;align-items:start}
+    .twhen{font-size:11px;color:#fdba74;font-weight:800}
+    .tbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;font-size:12px;color:var(--ink)}
+
+    .km{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px}
+    .legend{display:flex;gap:12px;align-items:center;font-size:11px;color:var(--muted);flex-wrap:wrap;margin-top:6px}
+    .sq{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+    .secPrev{background:linear-gradient(135deg, rgba(34,197,94,.10), rgba(16,185,129,.05));border:1px solid rgba(34,197,94,.22);border-radius:12px;padding:12px}
+
+    /* Rodapé */
+    .refs{position:absolute;left:64px;right:64px;bottom:26px;display:flex;justify-content:space-between;align-items:center}
+    .refs .left{font-size:11px;color:var(--muted)}
+    .slideNo{position:absolute;bottom:26px;left:64px;font-size:12px;color:#64748B;background:rgba(255,255,255,.05);padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.08)}
+    .nav{position:absolute;left:50%;transform:translateX(-50%);bottom:26px;display:flex;gap:6px}
+    .dotnav{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
+    .dotnav.active{background:var(--orange);width:24px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <div class="slide" role="group" aria-label="Slide 5 — IAM Recorrente (I22)">
+    <div class="bg"></div>
+
+    <header>
+      <h1>I22 — IAM Recorrente (até 28 dias do evento índice)</h1>
+      <div class="sub">Critério temporal do CID‑10 • Diagnóstico, risco e manejo alinhados ao Harrison 21ª ed.</div>
+      <div class="badge">Período crítico: 48–72 h</div>
+    </header>
+
+    <section class="grid">
+      <!-- COLUNA ESQUERDA -->
+      <div class="panel">
+        <!-- Definição & Classificação -->
+        <div class="block">
+          <h3 class="btitle">Definição e classificação <span class="tag">CID‑10 (I22)</span></h3>
+          <div class="list">
+            <div class="item"><div class="dot"></div><div>
+              <strong>IAM recorrente:</strong> novo episódio de IAM <em>dentro de 28 dias</em> após o IAM índice — classificado como <strong>I22</strong>.
+            </div></div>
+            <div class="item"><div class="dot"></div><div>
+              <strong>Harrison/4ª Definição:</strong> novo IAM identificado por <em>re‑elevação de troponina (&gt;20%)</em> após queda documentada <u>com</u> evidências de isquemia (sintomas/ECG/imagem).
+            </div></div>
+            <div class="item"><div class="dot"></div><div>
+              >28 dias: classifica-se como <strong>novo IAM</strong> (I21). O risco permanece elevado até ~3 meses.
+            </div></div>
+          </div>
+          <div class="hint">Incidência típica de reinfarto precoce ≈ 5–10%; mortalidade maior que no evento índice (≈2–3×), sobretudo se FE reduzida/choque.</div>
+        </div>
+
+        <!-- Fatores de risco principais -->
+        <div class="block card">
+          <h3 class="btitle">Fatores associados ao reinfarto</h3>
+          <div class="risk">
+            <div class="riskItem"><div class="riskIcon">PCI</div><div>Revascularização incompleta/multivaso</div><div class="riskBadge">anatomia</div></div>
+            <div class="riskItem"><div class="riskIcon">ST</div><div>Trombose de stent (aderência/alta trombose)</div><div class="riskBadge">crítico</div></div>
+            <div class="riskItem"><div class="riskIcon">Rx</div><div>Baixa adesão à <strong>DAPT</strong>/estatinas</div><div class="riskBadge">ajustável</div></div>
+            <div class="riskItem"><div class="riskIcon">DM</div><div>Diabetes, síndrome metabólica</div><div class="riskBadge">metabólico</div></div>
+            <div class="riskItem"><div class="riskIcon">FE</div><div>FE reduzida/ICC • remodelamento</div><div class="riskBadge">prognóstico</div></div>
+            <div class="riskItem"><div class="riskIcon">🚬</div><div>Tabagismo persistente</div><div class="riskBadge">comportamental</div></div>
+          </div>
+        </div>
+
+        <!-- Diagnóstico prático -->
+        <div class="block">
+          <h3 class="btitle">Diagnóstico prático</h3>
+          <div class="grid2">
+            <div class="card">
+              <strong>Biomarcadores</strong><br/>
+              • Troponina em queda → <em>nova elevação &gt;20%</em> sugere reinfarto<br/>
+              • Coletar seriado (0–1–3–6 h) com o contexto clínico
+            </div>
+            <div class="card">
+              <strong>ECG & Imagem</strong><br/>
+              • Novas alterações de ST/T/Q ou BRE novo<br/>
+              • Eco: nova hipocinesia; considerar coronariografia imediata
+            </div>
+          </div>
+          <div class="hint">Sempre considerar trombose de stent no reinfarto precoce (primeiras 72 h).</div>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA -->
+      <div class="panel">
+        <!-- Timeline temporal -->
+        <div class="block">
+          <h3 class="btitle">Linha do tempo do risco</h3>
+          <div class="timeline">
+            <div class="trow"><div class="twhen">Dia 0</div><div class="tbox">IAM índice (I21) tratado com reperfusão + DAPT + estatina alta intensidade.</div></div>
+            <div class="trow"><div class="twhen">48–72 h</div><div class="tbox"><strong>Pico de risco</strong> para reinfarto/choque/arrítmias. Vigiar stent, isquemia recorrente, sopro novo.</div></div>
+            <div class="trow"><div class="twhen">Até 28 d</div><div class="tbox"><strong>Reinfarto = I22</strong>. Conduta: UCO + coronariografia urgente; otimizar antiagregação/anticoagulação conforme cenário.</div></div>
+            <div class="trow"><div class="twhen">1–3 meses</div><div class="tbox">Risco ainda elevado; intensificar prevenção secundária, reabilitação e controle de fatores.</div></div>
+          </div>
+        </div>
+
+        <!-- “Kaplan–Meier” ilustrativo -->
+        <div class="block km">
+          <h3 class="btitle">Sobrevida livre de eventos (ilustrativo)</h3>
+          <figure role="img" aria-label="Curvas ilustrativas de sobrevida livre de eventos em 30 dias">
+            <svg viewBox="0 0 520 160" width="100%" height="160">
+              <!-- grade -->
+              <g stroke="rgba(255,255,255,.08)" stroke-width="1">
+                <line x1="50" y1="130" x2="500" y2="130"/><line x1="50" y1="100" x2="500" y2="100"/>
+                <line x1="50" y1="70"  x2="500" y2="70"/><line x1="50" y1="40"  x2="500" y2="40"/>
+              </g>
+              <!-- eixos -->
+              <g stroke="rgba(255,255,255,.2)"><line x1="50" y1="20" x2="50" y2="130"/><line x1="50" y1="130" x2="500" y2="130"/></g>
+              <!-- curvas -->
+              <polyline fill="none" stroke="#EF4444" stroke-width="2"
+                points="50,40 120,55 180,70 240,85 300,98 360,108 420,116 480,122"/>
+              <polyline fill="none" stroke="#3B82F6" stroke-width="2"
+                points="50,32 120,40 180,52 240,62 300,72 360,82 420,90 480,96"/>
+              <polyline fill="none" stroke="#10B981" stroke-width="2"
+                points="50,28 120,35 180,45 240,54 300,62 360,70 420,78 480,84"/>
+              <!-- labels -->
+              <g fill="#94A3B8" font-size="10">
+                <text x="44" y="144">0</text><text x="116" y="144">5</text><text x="176" y="144">10</text>
+                <text x="236" y="144">15</text><text x="296" y="144">20</text><text x="356" y="144">25</text><text x="416" y="144">30</text>
+                <text x="8" y="28">100%</text><text x="16" y="60">90%</text><text x="16" y="92">80%</text><text x="16" y="124">70%</text>
+              </g>
+            </svg>
+          </figure>
+          <div class="legend">
+            <span class="sq" style="background:#EF4444"></span> Sem DAPT otimizada
+            <span class="sq" style="background:#3B82F6"></span> DAPT otimizada (AAS + P2Y12)
+            <span class="sq" style="background:#10B981"></span> DAPT + Reabilitação + controle intensivo
+          </div>
+          <div class="hint">Curvas ilustrativas para a didática da aula; não representam um estudo específico.</div>
+        </div>
+
+        <!-- Prevenção secundária -->
+        <div class="block secPrev">
+          <h3 class="btitle">Prevenção secundária (DCNT & prática clínica)</h3>
+          <div class="list">
+            <div class="item"><div class="dot" style="background:rgba(34,197,94,.5);border-color:rgba(34,197,94,.7)"></div><div>
+              <strong>DAPT</strong> por ~12 meses (ajustar risco de sangramento), estatina <em>alta intensidade</em>, <strong>IECA/BRA</strong>, <strong>BB</strong> se indicados.
+            </div></div>
+            <div class="item"><div class="dot" style="background:rgba(34,197,94,.5);border-color:rgba(34,197,94,.7)"></div><div>
+              Metas usuais: <strong>LDL &lt;70 mg/dL</strong> (ou &lt;55 mg/dL em muito alto risco), PA &lt;130/80, cessar tabagismo, atividade física ≥150 min/sem.
+            </div></div>
+            <div class="item"><div class="dot" style="background:rgba(34,197,94,.5);border-color:rgba(34,197,94,.7)"></div><div>
+              <strong>Reabilitação cardíaca</strong> e educação para adesão: reduzem reinternações e novos eventos.
+            </div></div>
+          </div>
+          <div class="pill">Alinhado ao Plano DCNT 2021–2030 (redução da mortalidade prematura por DCV ~30%).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <div class="refs">
+      <div class="left">Fontes: Harrison 21ª ed. (Caps. 269–271) • 4ª Definição Universal de IAM (2018) • CID‑10 (I22) • Plano DCNT 2021–2030.</div>
+      <div class="right pill" aria-label="Nota classificatória">“28 dias” é um critério de classificação (CID‑10).</div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="slideNo">05 / 10</div>
+    <div class="nav" aria-hidden="true">
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav active"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+    </div>
+  </div>
+
+  <script>
+    // Metadados p/ exportação
+    window.slideMetadata = {
+      slideNumber: 5,
+      title: "I22 — IAM Recorrente",
+      layout: "LAYOUT_RECURRENT_MI",
+      transition: { type: "slide", duration: 0.8 },
+      course: "Projeto de Extensão V",
+      classGroup: "5º Semestre B",
+      dateISO: "2025-08-27",
+      bullets: [
+        "Critério CID‑10: novo IAM ≤28 dias (I22)",
+        "Re‑elevação de troponina >20% + evidência de isquemia",
+        "Maior risco nas primeiras 48–72 h; considerar trombose de stent",
+        "Conduta: UCO + coronariografia; otimizar DAPT/estatinas",
+        "Prevenção secundária intensiva + DCNT 2030"
+      ],
+      references: [
+        "Harrison’s Principles of Internal Medicine, 21st ed., Ch. 269–271",
+        "Fourth Universal Definition of MI, 2018",
+        "CID‑10 (I22)",
+        "Plano de Ações Estratégicas DCNT Brasil 2021–2030"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "TIMELINE_CRITICAL" },
+        googleSlides: { layout: "TITLE_AND_TWO_COLUMNS" }
+      }
+    };
+  </script>
+</body>
+</html>

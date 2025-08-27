@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>I21 — IAM • Diagnóstico & Tratamento</title>
+
+  <!-- Metadados para pipeline de conversão -->
+  <meta name="slide-number" content="4" />
+  <meta name="slide-layout" content="clinical-diagnosis" />
+  <meta name="pptx-transition" content="slide" />
+  <meta name="harrison-validated" content="true" />
+  <meta name="course" content="Projeto de Extensão V" />
+  <meta name="class-group" content="Turma 5º Semestre B" />
+  <meta name="date" content="2025-08-27" />
+
+  <style>
+    :root{
+      --bg1:#0F172A; --bg2:#1E293B; --ink:#E2E8F0; --muted:#94A3B8;
+      --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+      --red:#EF4444; --amber:#F59E0B; --blue:#3B82F6; --green:#10B981; --teal:#14B8A6;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+    .slide{width:1280px;height:720px;margin:0 auto;position:relative;overflow:hidden;padding:44px 64px}
+    .bg{position:absolute;inset:-20%;background:
+      radial-gradient(560px 320px at 20% 18%, rgba(239,68,68,.10), transparent 60%),
+      radial-gradient(520px 260px at 86% 84%, rgba(34,197,94,.08), transparent 60%); pointer-events:none}
+    header{text-align:center;margin-bottom:18px;position:relative;z-index:2}
+    h1{margin:0;font-size:36px;font-weight:800;text-shadow:0 8px 30px rgba(0,0,0,.35)}
+    .sub{margin-top:6px;font-size:14px;color:var(--muted)}
+    .badge{position:absolute;top:46px;right:64px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);
+      color:#fecaca;font-size:12px;border-radius:999px;padding:8px 14px}
+
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch;position:relative;z-index:2}
+    .panel{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:18px}
+
+    /* Esquerda: Diagnóstico + Biomarcadores + Killip */
+    .block{margin-bottom:14px}
+    .btitle{font-size:14px;font-weight:800;margin:0 0 8px;color:#fff;display:flex;align-items:center;gap:8px}
+    .list{display:grid;gap:8px}
+    .item{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px}
+    .dot{width:16px;height:16px;border-radius:4px;background:rgba(239,68,68,.35);border:1px solid rgba(239,68,68,.5);margin:auto}
+    .hint{font-size:12px;color:var(--muted)}
+
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px}
+    .legend{display:flex;gap:12px;align-items:center;font-size:12px;color:var(--muted);flex-wrap:wrap}
+    .sq{width:10px;height:10px;border-radius:3px;display:inline-block}
+    .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .killip{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px}
+    .khead{font-size:12px;font-weight:800;margin-bottom:4px}
+    .krisk{height:6px;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--amber),var(--red));opacity:.7}
+
+    /* Direita: Fluxo terapêutico + Secundária */
+    .timeline{position:relative;padding-left:18px;display:grid;gap:10px}
+    .timeline::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--red),var(--green))}
+    .trow{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:start}
+    .twhen{font-size:11px;color:#fecaca;font-weight:800}
+    .tbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;font-size:12px;color:var(--ink)}
+    .pill{display:inline-flex;gap:6px;align-items:center;border:1px solid rgba(34,197,94,.35);color:#a7f3d0;
+      background:rgba(34,197,94,.08);padding:6px 10px;border-radius:8px;font-size:11px}
+
+    /* Rodapé */
+    .refs{position:absolute;left:64px;right:64px;bottom:26px;display:flex;justify-content:space-between;align-items:center}
+    .refs .left{font-size:11px;color:var(--muted)}
+    .slideNo{position:absolute;bottom:26px;left:64px;font-size:12px;color:#64748B;background:rgba(255,255,255,.05);padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.08)}
+    .nav{position:absolute;left:50%;transform:translateX(-50%);bottom:26px;display:flex;gap:6px}
+    .dotnav{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
+    .dotnav.active{background:var(--red);width:24px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <div class="slide" role="group" aria-label="Slide 4 — IAM: Diagnóstico e Tratamento">
+    <div class="bg"></div>
+
+    <header>
+      <h1>I21 — Infarto Agudo do Miocárdio • Diagnóstico & Tratamento</h1>
+      <div class="sub">4ª Definição Universal • Tempo‑dependente • Alinhado a Harrison 21ª ed. + DCNT</div>
+      <div class="badge">Tempo é músculo</div>
+    </header>
+
+    <section class="grid">
+      <!-- COLUNA ESQUERDA -->
+      <div class="panel">
+        <!-- Diagnóstico -->
+        <div class="block">
+          <h3 class="btitle">Critérios diagnósticos (4ª Definição Universal de IAM)</h3>
+          <div class="list">
+            <div class="item"><div class="dot"></div><div>
+              <strong>Troponina cardíaca</strong> com elevação/queda e valor > percentil 99, <em>mais</em> evidência de isquemia (qualquer um dos abaixo).
+            </div></div>
+            <div class="item"><div class="dot"></div><div>
+              <strong>Isquemia clínica:</strong> dor típica, dispneia, sintomas autonômicos.
+            </div></div>
+            <div class="item"><div class="dot"></div><div>
+              <strong>ECG:</strong> supra de ST em derivações contíguas ou BRE novo; depressão de ST/onda T dinâmica compatível com NSTE‑ACS.
+            </div></div>
+            <div class="item"><div class="dot"></div><div>
+              <strong>Imagem:</strong> nova alteração segmentar de contratilidade ou perda de miocárdio viável.
+            </div></div>
+          </div>
+          <div class="hint">Nota: em reinfarto, re‑elevação de troponina &gt;20% do valor precedente fortalece o diagnóstico.</div>
+        </div>
+
+        <!-- Biomarcadores -->
+        <div class="block card">
+          <h3 class="btitle">Cinética de biomarcadores</h3>
+          <figure role="img" aria-label="Curvas de Troponina e CK‑MB (esquemático)">
+            <svg viewBox="0 0 520 160" width="100%" height="160" aria-hidden="false">
+              <!-- grade -->
+              <g stroke="rgba(255,255,255,.08)" stroke-width="1">
+                <line x1="50" y1="130" x2="500" y2="130"/><line x1="50" y1="100" x2="500" y2="100"/>
+                <line x1="50" y1="70"  x2="500" y2="70"/><line x1="50" y1="40"  x2="500" y2="40"/>
+              </g>
+              <!-- eixos -->
+              <g stroke="rgba(255,255,255,.2)"><line x1="50" y1="20" x2="50" y2="130"/><line x1="50" y1="130" x2="500" y2="130"/></g>
+              <!-- Troponina -->
+              <polyline fill="none" stroke="#EF4444" stroke-width="2"
+                points="50,130 90,120 130,90 170,55 210,40 250,42 290,55 330,75 370,95 410,110 450,120 500,126"/>
+              <polygon fill="rgba(239,68,68,.22)"
+                points="50,130 90,120 130,90 170,55 210,40 250,42 290,55 330,75 370,95 410,110 450,120 500,126 500,130 50,130"/>
+              <!-- CK-MB -->
+              <polyline fill="none" stroke="#3B82F6" stroke-width="2"
+                points="50,130 90,125 130,110 170,90 210,80 250,90 290,105 330,118 370,125 410,128 450,129 500,129"/>
+              <!-- legenda -->
+              <g font-size="11" fill="#94A3B8">
+                <rect x="60" y="22" width="10" height="10" fill="#EF4444" rx="2"/><text x="76" y="31">Troponina: ↑1–3 h (hs) / 3–4 h (convencional), pico 24–48 h, normaliza 7–14 d</text>
+                <rect x="60" y="38" width="10" height="10" fill="#3B82F6" rx="2"/><text x="76" y="47">CK‑MB: ↑4–6 h, pico ~24 h, normaliza 48–72 h</text>
+              </g>
+              <!-- eixo X -->
+              <g fill="#94A3B8" font-size="10">
+                <text x="44" y="144">0 h</text><text x="124" y="144">6 h</text><text x="204" y="144">12 h</text>
+                <text x="284" y="144">24 h</text><text x="364" y="144">48 h</text><text x="444" y="144">72 h</text>
+              </g>
+            </svg>
+          </figure>
+        </div>
+
+        <!-- Killip -->
+        <div class="block">
+          <h3 class="btitle">Estratificação à admissão — Classificação de Killip</h3>
+          <div class="grid4">
+            <div class="killip">
+              <div class="khead">I • Sem IC</div>
+              <div class="krisk" style="width:20%"></div>
+              <div class="hint">Risco baixo (mortalidade hospitalar histórica ≈ ~5–6%).</div>
+            </div>
+            <div class="killip">
+              <div class="khead">II • Estertores/S3</div>
+              <div class="krisk" style="width:40%"></div>
+              <div class="hint">Risco intermediário (≈ 10–20%).</div>
+            </div>
+            <div class="killip">
+              <div class="khead">III • EAP</div>
+              <div class="krisk" style="width:70%"></div>
+              <div class="hint">Risco alto (≈ 30–40%).</div>
+            </div>
+            <div class="killip">
+              <div class="khead">IV • Choque</div>
+              <div class="krisk" style="width:90%"></div>
+              <div class="hint">Risco muito alto (≈ 40–80%).</div>
+            </div>
+          </div>
+          <div class="hint">Percentuais variam conforme era terapêutica; tendência decrescente com reperfusão e UCO.</div>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA -->
+      <div class="panel">
+        <!-- Tratamento tempo-dependente -->
+        <div class="block">
+          <h3 class="btitle">Manejo inicial e reperfusão (tempo‑dependente)</h3>
+          <div class="timeline">
+            <div class="trow">
+              <div class="twhen">0–10 min</div>
+              <div class="tbox">
+                ECG imediato (≤10 min) + monitorização; AAS 160–325 mg mastigável; nitrato SL (se PA/VD ok); analgesia (morfina com parcimônia); <strong>O₂</strong> apenas se <strong>SatO₂ &lt;90%</strong>.
+              </div>
+            </div>
+            <div class="trow">
+              <div class="twhen">≤30 min</div>
+              <div class="tbox">
+                <strong>Porta‑agulha</strong> (fibrinólise) se STEMI e ICP não disponível em tempo hábil; avaliar contraindicações absolutas.
+              </div>
+            </div>
+            <div class="trow">
+              <div class="twhen">≤90 min</div>
+              <div class="tbox">
+                <strong>Porta‑balão</strong> (ICP primária) para STEMI — Classe I. Se tempo total para ICP &gt;120 min, preferir fibrinólise precoce + ICP de resgate.
+              </div>
+            </div>
+            <div class="trow">
+              <div class="twhen">Durante</div>
+              <div class="tbox">
+                <strong>Antiplaquetário P2Y12</strong> (ticagrelor/prasugrel/clopidogrel) + <strong>anticoagulação</strong> (heparina NF/ENX). <em>Beta‑bloqueador</em> nas primeiras 24 h se sem choque/IC/broncoespasmo.
+              </div>
+            </div>
+            <div class="trow">
+              <div class="twhen">24–48 h</div>
+              <div class="tbox">
+                <strong>DAPT</strong> (AAS + P2Y12), <strong>estatina alta intensidade</strong>, <strong>IECA/BRA</strong> (especialmente se FE reduzida/DM/HAS), <strong>espironolactona</strong> se FE≤40% e IC.
+              </div>
+            </div>
+            <div class="trow">
+              <div class="twhen">Alta</div>
+              <div class="tbox">
+                <strong>Reabilitação cardíaca</strong>; DAPT por ~12 meses (salvo exceções), metas lipídicas intensivas; educação para sintomas e adesão.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prevenção secundária + metas -->
+        <div class="block card">
+          <h3 class="btitle">Prevenção secundária (pós‑IAM)</h3>
+          <div class="legend">
+            <span class="sq" style="background:var(--green)"></span> Estatina alta intensidade — NNT ≈ <strong>~20</strong> (5 anos) para prevenir evento maior em alto risco
+            <span class="sq" style="background:var(--blue)"></span> LDL meta usuais: &lt;70 mg/dL (alto risco); considerar &lt;55 mg/dL (muito alto risco)
+            <span class="sq" style="background:var(--amber)"></span> DCNT 2030: reduzir mortalidade prematura por DCV ~<strong>30%</strong>
+          </div>
+          <div style="margin-top:8px" class="pill">Cessar tabagismo • PA &lt;130/80 • HbA1c alvo individualizado • IMC saudável • Atividade física ≥150 min/sem</div>
+        </div>
+
+        <!-- Fluxo resumido STEMI vs NSTE -->
+        <div class="block">
+          <h3 class="btitle">Algoritmo resumido</h3>
+          <div class="list">
+            <div class="item"><div class="dot" style="background:rgba(239,68,68,.5)"></div><div>
+              <strong>STEMI:</strong> ICP primária (≤90 min) ou fibrinólise (≤30 min) + ICP de resgate; DAPT + anticoagulação.
+            </div></div>
+            <div class="item"><div class="dot" style="background:rgba(59,130,246,.5)"></div><div>
+              <strong>NSTE‑ACS:</strong> anti‑isquêmica + DAPT + anticoagulação; estratificar risco (TIMI/GRACE) e indicar estratégia invasiva precoce se moderado‑alto risco.
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <div class="refs">
+      <div class="left">Base técnica: Harrison 21ª ed. (Caps. 269–271) • 4ª Definição Universal de IAM (2018) • Integração Plano DCNT 2021–2030.</div>
+      <div class="right pill" aria-label="Integração DCNT">Metas populacionais + adesão individual</div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="slideNo">04 / 10</div>
+    <div class="nav" aria-hidden="true">
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav active"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+      <div class="dotnav"></div>
+    </div>
+  </div>
+
+  <script>
+    // Metadados para exportação (Manus)
+    window.slideMetadata = {
+      slideNumber: 4,
+      title: "IAM — Diagnóstico & Tratamento",
+      layout: "LAYOUT_CLINICAL_DATA",
+      transition: { type: "slide", duration: 0.8 },
+      course: "Projeto de Extensão V",
+      classGroup: "5º Semestre B",
+      dateISO: "2025-08-27",
+      bullets: [
+        "4ª Definição Universal: troponina >p99 + evidência de isquemia",
+        "ECG em 10 min; estratégia de reperfusão tempo‑dependente",
+        "Biomarcadores: troponina vs CK‑MB (cinética)",
+        "Killip I–IV para risco imediato",
+        "Pós‑IAM: DAPT, estatina alta intensidade, IECA/BRA, reabilitação"
+      ],
+      references: [
+        "Harrison’s Principles of Internal Medicine, 21st ed., Ch. 269–271",
+        "Fourth Universal Definition of MI, 2018",
+        "Plano de Ações Estratégicas DCNT Brasil 2021–2030"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "CLINICAL_TIMELINE" },
+        googleSlides: { layout: "TITLE_AND_TWO_COLUMNS" }
+      }
+    };
+  </script>
+</body>
+</html>

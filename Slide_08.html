@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I25 — Doença Isquêmica Crônica do Coração</title>
+
+  <!-- Metadados p/ conversão -->
+  <meta name="slide-number" content="8">
+  <meta name="slide-layout" content="chronic-ischemic-disease">
+  <meta name="pptx-transition" content="slide">
+  <meta name="harrison-validated" content="true">
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+
+  <style>
+    /* Base */
+    .slide-container{width:1280px;height:720px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#334155 100%);margin:0 auto;display:flex;flex-direction:column;padding:40px 60px;position:relative;overflow:hidden;font-family:'Inter',sans-serif}
+    .slide-container::before{content:'';position:absolute;inset:0;background-image:
+      radial-gradient(circle at 30% 55%,rgba(99,102,241,.06) 0%,transparent 40%),
+      radial-gradient(circle at 70% 25%,rgba(168,85,247,.05) 0%,transparent 45%),
+      radial-gradient(circle at 50% 85%,rgba(34,197,94,.04) 0%,transparent 50%);animation:flow 24s ease-in-out infinite}
+    @keyframes flow{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.7;transform:scale(1.04)}}
+
+    /* Header */
+    .header-section{position:relative;z-index:10;margin-bottom:18px}
+    .title{font-family:'Roboto Slab',serif;font-size:34px;font-weight:700;color:#fff;display:flex;gap:12px;justify-content:center;align-items:center;text-shadow:0 6px 24px rgba(0,0,0,.35)}
+    .title .code{color:#6366F1;background:rgba(99,102,241,.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(99,102,241,.35)}
+    .subtitle{text-align:center;color:#94A3B8;font-size:13px}
+    .badge{position:absolute;top:40px;right:60px;background:linear-gradient(135deg,rgba(99,102,241,.22),rgba(168,85,247,.14));border:1px solid rgba(99,102,241,.35);padding:8px 18px;border-radius:999px;display:flex;gap:8px;align-items:center;animation:pulse 4s ease-in-out infinite}
+    .badge i{color:#818CF8}
+    @keyframes pulse{50%{transform:scale(1.05)}}
+
+    /* Grid principal */
+    .content{position:relative;z-index:10;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px;flex:1}
+
+    /* Cards genéricos */
+    .card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px}
+    .card-title{display:flex;align-items:center;gap:8px;font-weight:600;color:#E2E8F0;margin-bottom:10px}
+    .card-title i{opacity:.9}
+
+    /* Definição/Epidemiologia */
+    .def-card{background:linear-gradient(135deg,rgba(99,102,241,.09),rgba(99,102,241,.045));border:1px solid rgba(99,102,241,.22);border-left:3px solid #6366F1}
+    .def-text{font-size:11px;color:#CBD5E1;line-height:1.55}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    .stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px;text-align:center}
+    .stat .v{font-size:18px;font-weight:700;color:#818CF8}
+    .stat .l{font-size:9px;color:#94A3B8;letter-spacing:.3px;text-transform:uppercase}
+
+    /* Cascata isquêmica */
+    .cascade{position:relative}
+    .cascade-line{position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#6366F1 0%,#A855F7 100%)}
+    .step{display:flex;gap:12px;align-items:center;margin:8px 0;opacity:0;animation:fade .5s forwards}
+    .step:nth-child(1){animation-delay:.1s}.step:nth-child(2){animation-delay:.25s}.step:nth-child(3){animation-delay:.4s}.step:nth-child(4){animation-delay:.55s}.step:nth-child(5){animation-delay:.7s}
+    @keyframes fade{to{opacity:1}}
+    .dot{width:12px;height:12px;border-radius:50%;background:#6366F1;border:2px solid #1E293B}
+    .step-box{flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:8px 10px}
+    .step-t{font-size:11px;font-weight:600;color:#C4B5FD}
+    .step-d{font-size:10px;color:#94A3B8}
+    .step-time{font-size:9px;color:#64748B}
+
+    /* Clínica */
+    .pill{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.25);border-radius:999px;color:#C4B5FD;font-size:11px;margin-right:6px}
+    .list{display:grid;gap:8px;margin-top:10px}
+    .li{display:flex;gap:10px;align-items:flex-start;padding:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px}
+    .li i{color:#A855F7}
+    .ccs{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:10px;margin-top:10px}
+    .ccs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+    .ccs-it{background:rgba(239,68,68,.06);border-radius:6px;padding:6px;text-align:center;font-size:10px}
+    .ccs-it b{color:#F87171}
+
+    /* ABCDE */
+    .abcde{background:linear-gradient(135deg,rgba(34,197,94,.09),rgba(16,185,129,.05));border:1px solid rgba(34,197,94,.22)}
+    .row{display:flex;gap:10px;align-items:flex-start;padding:10px;background:rgba(255,255,255,.03);border:1px solid rgba(34,197,94,.16);border-radius:8px;margin-bottom:8px}
+    .letter{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#22C55E,#10B981);color:#fff;font-weight:800}
+    .rx b{color:#A7F3D0}
+
+    /* Prognóstico (gráfico) */
+    .chart-wrap{padding:12px}
+    .chart-title{text-align:center;color:#E2E8F0;font-weight:600;font-size:12px;margin-bottom:8px}
+
+    /* Barra inferior */
+    .bottom{position:absolute;left:60px;right:60px;bottom:60px;background:rgba(255,255,255,.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 18px;display:flex;justify-content:space-between;align-items:center}
+    .b-it{text-align:center}
+    .b-v{font-size:18px;font-weight:700;color:#818CF8}
+    .b-l{font-size:10px;color:#94A3B8;text-transform:uppercase}
+    .div{width:1px;height:28px;background:rgba(255,255,255,.1)}
+
+    /* Rodapé */
+    .harrison-ref{position:absolute;bottom:30px;right:240px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.32);padding:6px 14px;border-radius:6px;color:#93C5FD;font-size:10px;display:flex;gap:6px;align-items:center}
+    .dcnt-ref{position:absolute;bottom:30px;right:60px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.32);padding:8px 14px;border-radius:8px;color:#A7F3D0;font-size:11px;display:flex;gap:8px;align-items:center}
+    .num{position:absolute;bottom:30px;left:60px;background:rgba(255,255,255,.05);backdrop-filter:blur(10px);padding:6px 12px;border-radius:6px;color:#64748B;font-size:12px}
+    .dots{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
+    .dot.active{background:#6366F1;width:24px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <div class="slide-container" data-slide="8" data-section="chronic-ischemic-disease">
+    <!-- Header -->
+    <div class="header-section">
+      <h1 class="title"><span class="code">I25</span> Doença Isquêmica Crônica do Coração</h1>
+      <p class="subtitle">Angina Estável • Miocardiopatia Isquêmica • Isquemia Silenciosa • Manejo Ambulatorial</p>
+      <div class="badge"><i class="fa-solid fa-history"></i><span>Evolução Lenta</span></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="content">
+      <!-- Coluna 1 -->
+      <div class="card def-card">
+        <div class="card-title"><i class="fa-solid fa-heart"></i> Definição & Epidemiologia</div>
+        <div class="def-text">
+          <b>DAC estável:</b> estenose epicárdica <b>&gt;50%</b> reduz a <i>reserva de fluxo</i>; estreitamentos em torno de <b>~80%</b> podem reduzir o fluxo até em repouso → isquemia mesmo sem esforço. Aterosclerose progressiva com episódios isquêmicos recorrentes; grande parte é <b>silenciosa</b>.
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">~6%</div><div class="l">Prevalência adultos</div></div>
+          <div class="stat"><div class="v">20 M</div><div class="l">EUA (estim.)</div></div>
+          <div class="stat"><div class="v">~75%</div><div class="l">Isquemia silenciosa</div></div>
+        </div>
+      </div>
+
+      <div class="card cascade">
+        <div class="card-title"><i class="fa-solid fa-water"></i> Cascata Isquêmica (temporal)</div>
+        <div class="cascade-line"></div>
+        <div class="step">
+          <div class="dot"></div>
+          <div class="step-box">
+            <div class="step-t">Alteração da perfusão</div>
+            <div class="step-d">Desequilíbrio oferta/demanda de O₂</div>
+          </div>
+          <div class="step-time">0–10 s</div>
+        </div>
+        <div class="step">
+          <div class="dot"></div>
+          <div class="step-box">
+            <div class="step-t">Disfunção diastólica</div>
+            <div class="step-d">↑ pressão diastólica final do VE</div>
+          </div>
+          <div class="step-time">10–30 s</div>
+        </div>
+        <div class="step">
+          <div class="dot"></div>
+          <div class="step-box">
+            <div class="step-t">Disfunção sistólica</div>
+            <div class="step-d">Hipo/acinésia segmentar</div>
+          </div>
+          <div class="step-time">30–60 s</div>
+        </div>
+        <div class="step">
+          <div class="dot"></div>
+          <div class="step-box">
+            <div class="step-t">Alterações no ECG</div>
+            <div class="step-d">Infra de ST (≥1 mm) e/ou T (-)</div>
+          </div>
+          <div class="step-time">60–120 s</div>
+        </div>
+        <div class="step">
+          <div class="dot"></div>
+          <div class="step-box">
+            <div class="step-t">Angina</div>
+            <div class="step-d">Dor/pressão retroesternal ± irradiação</div>
+          </div>
+          <div class="step-time">2–3 min</div>
+        </div>
+      </div>
+
+      <!-- Coluna 2 -->
+      <div class="card">
+        <div class="card-title"><i class="fa-solid fa-stethoscope"></i> Clínica — Angina Estável</div>
+        <div>
+          <span class="pill"><i class="fa-solid fa-running"></i> Desencadeada por esforço/estresse</span>
+          <span class="pill"><i class="fa-solid fa-clock"></i> 2–10 min (raramente &gt;15)</span>
+          <span class="pill"><i class="fa-solid fa-syringe"></i> Alívio com repouso/nitrato &lt;5 min</span>
+        </div>
+        <div class="list">
+          <div class="li"><i class="fa-solid fa-compress"></i><div><b>Característica:</b> opressão/aperto retroesternal com irradiação para MSE/mandíbula.</div></div>
+          <div class="li"><i class="fa-solid fa-lungs"></i><div><b>Equivalentes:</b> dispneia, fadiga, epigastralgia (idosos/DM).</div></div>
+        </div>
+        <div class="ccs">
+          <div class="card-title" style="margin:0 0 6px 0"><i class="fa-solid fa-layer-group"></i> Classificação CCS</div>
+          <div class="ccs-grid">
+            <div class="ccs-it"><b>I</b><div>Atividade usual</div></div>
+            <div class="ccs-it"><b>II</b><div>Limitação leve</div></div>
+            <div class="ccs-it"><b>III</b><div>Limitação importante</div></div>
+            <div class="ccs-it"><b>IV</b><div>Em repouso</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna 3 -->
+      <div class="card abcde">
+        <div class="card-title"><i class="fa-solid fa-prescription"></i> Tratamento ABCDE (prevenção + sintomático)</div>
+        <div class="row">
+          <div class="letter">A</div>
+          <div class="rx"><b>Aspirina + Antianginal</b><br/>AAS 75–100 mg/dia; BB 1ª linha (ou BCC/nitratos conforme necessidade).</div>
+        </div>
+        <div class="row">
+          <div class="letter">B</div>
+          <div class="rx"><b>Betabloqueador + Blood pressure</b><br/>Meta FC 55–60 bpm; PA &lt;130/80 se tolerado.</div>
+        </div>
+        <div class="row">
+          <div class="letter">C</div>
+          <div class="rx"><b>Colesterol + Cigarette cessation</b><br/>LDL alvo &lt;70 mg/dL (mais baixo se muito alto risco); cessar tabagismo.</div>
+        </div>
+        <div class="row">
+          <div class="letter">D</div>
+          <div class="rx"><b>Dieta + Diabetes</b><br/>Padrão mediterrâneo/DASH; HbA1c alvo ~&lt;7% (individualizar).</div>
+        </div>
+        <div class="row" style="margin-bottom:0">
+          <div class="letter">E</div>
+          <div class="rx"><b>Exercício + Educação</b><br/>≥150 min/sem moderado; reabilitação cardíaca e autocuidado.</div>
+        </div>
+      </div>
+
+      <div class="card chart-wrap">
+        <div class="chart-title">Mortalidade Anual por Risco</div>
+        <canvas id="prognosisChart" height="120"></canvas>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="bottom">
+      <div class="b-it"><div class="b-v">1–3%</div><div class="b-l">Mortalidade/ano</div></div>
+      <div class="div"></div>
+      <div class="b-it"><div class="b-v">~75%</div><div class="b-l">Isquemia silenciosa</div></div>
+      <div class="div"></div>
+      <div class="b-it"><div class="b-v">~40%</div><div class="b-l">↓ eventos c/ tratamento</div></div>
+      <div class="div"></div>
+      <div class="b-it"><div class="b-v">NNT≈15</div><div class="b-l">Estatinas (5 anos)</div></div>
+      <div class="div"></div>
+      <div class="b-it"><div class="b-v">Indicações</div><div class="b-l">Revascularização: tronco CE, 3 vasos + ↓FE, refratariedade</div></div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="harrison-ref"><i class="fa-solid fa-book-medical"></i><span>Harrison 21ed — Cap. 271</span></div>
+    <div class="dcnt-ref"><i class="fa-solid fa-check-circle"></i><span>PLANO DCNT 2021–2030</span></div>
+    <div class="num">08 / 10</div>
+    <div class="dots">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+
+  <script>
+    // Gráfico de prognóstico
+    const ctx = document.getElementById('prognosisChart').getContext('2d');
+    const prog = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Baixo', 'Intermediário', 'Alto'],
+        datasets: [{
+          label: 'Mortalidade anual (%)',
+          data: [1, 3, 5],
+          backgroundColor: ['rgba(34,197,94,.65)','rgba(99,102,241,.65)','rgba(239,68,68,.65)'],
+          borderColor: ['#22C55E','#6366F1','#EF4444'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false},
+          tooltip:{backgroundColor:'rgba(30,41,59,.95)',titleColor:'#fff',bodyColor:'#CBD5E1',
+            callbacks:{label:(c)=> c.parsed.y + '% ao ano'}
+          }},
+        scales:{
+          y:{beginAtZero:true,max:6,grid:{color:'rgba(255,255,255,.06)',drawBorder:false},
+             ticks:{color:'#94A3B8',font:{size:10},callback:(v)=> v+'%'}},
+          x:{grid:{display:false},ticks:{color:'#94A3B8',font:{size:11}}}
+        }
+      }
+    });
+
+    // Metadados p/ exportação
+    window.slideMetadata = {
+      slideNumber: 8,
+      title: "I25 - Doença Isquêmica Crônica do Coração",
+      layout: "LAYOUT_THREE_COLUMN",
+      transition: { type: "slide", duration: 1 },
+      notes: `
+        Harrison 21ed (Cap. 271):
+        - Estenose >50% reduz reserva de fluxo; ~80% pode reduzir fluxo em repouso.
+        - Prevalência ~6% (EUA ~20M); muitos episódios isquêmicos são assintomáticos (~75%).
+        - Angina estável: esforço/estresse, 2–10 min, alívio rápido com nitrato/repouso.
+        - CCS I–IV para capacidade funcional.
+        - ABCDE: AAS + antianginosos; controle PA/FC; LDL baixo (preferir <70 mg/dL); dieta/DM; exercício/educação.
+        - Revascularização: prognóstico (tronco CE; 3 vasos + disfunção VE) ou sintomas refratários.
+      `,
+      references: [
+        "Harrison's Principles of Internal Medicine, 21st Ed, Chapter 271",
+        "ESC Chronic Coronary Syndromes 2019",
+        "Plano DCNT Brasil 2021–2030"
+      ],
+      exportConfig: {
+        powerpoint: { masterSlide: "THREE_COLUMN_CLINICAL" },
+        googleSlides: { layout: "TITLE_AND_THREE_COLUMNS" }
+      }
+    };
+  </script>
+</body>
+</html>
